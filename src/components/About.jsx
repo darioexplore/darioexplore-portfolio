@@ -51,7 +51,7 @@ export default function About() {
       {/* Approach: title left, bullet steps right */}
       <div id="approach" className={styles.approach}>
         <div className={styles.approachLeft}>
-          <div className={`${styles.kicker} reveal`}>05 — Approach</div>
+          <div className={`${styles.marker} reveal`}>05 — Approach</div>
           <h3 className={`${styles.approachTitle} reveal`}>
             Approach<span className={styles.accent}>.</span>
           </h3>
@@ -79,7 +79,7 @@ export default function About() {
       <div className={styles.results}>
         <div className={styles.feelingBg} aria-hidden="true">Feeling</div>
         <div className={styles.resultsLeft}>
-          <div className={`${styles.kicker} reveal`}>07 — Why It Works</div>
+          <div className={`${styles.marker} reveal`}>07 — Why It Works</div>
           <h3 className={`${styles.resultsTitle} reveal`}>
             Why It <span className={styles.accent}>Works</span>
           </h3>
