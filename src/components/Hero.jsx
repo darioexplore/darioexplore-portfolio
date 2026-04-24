@@ -41,13 +41,15 @@ export default function Hero() {
       <section id="top" className={styles.hero}>
         <video
           className={styles.video}
-          src="/video/mainvideo.mp4"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
-        />
+          preload="metadata"
+        >
+          <source src="/video/mainvideo.webm" type="video/webm" />
+          <source src="/video/mainvideo-web.mp4" type="video/mp4" />
+        </video>
         <div className={styles.overlay} />
 
         <div className={`${styles.marker} fade-up d1`}>
