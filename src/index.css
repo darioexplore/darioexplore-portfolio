@@ -47,8 +47,8 @@
   --font-display: 'Druk Wide', 'Arial Black', sans-serif;
   --font-mono: 'ABC Diatype Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  --pad-section: 140px;
-  --pad-section-mobile: 64px;
+  --pad-section: 100px;
+  --pad-section-mobile: 56px;
   --max-w: 1560px;
   --pad-x: 80px;
 }
