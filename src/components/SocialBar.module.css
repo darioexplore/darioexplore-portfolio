@@ -50,6 +50,9 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
+.left .item:first-child { padding-left: 0; }
+.bar > .item { padding-right: 0; }
+
 .divider {
   display: block;
   width: 1px;
