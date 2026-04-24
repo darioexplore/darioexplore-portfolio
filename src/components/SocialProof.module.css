@@ -1,0 +1,26 @@
+.wrap {
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 40px var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.line {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--fg);
+  opacity: 0.85;
+  text-align: center;
+}
+.line .dot { color: var(--accent); margin: 0 10px; }
+
+@media (max-width: 900px) {
+  .wrap { padding: 24px; }
+  .line { font-size: 10px; letter-spacing: 0.18em; }
+}

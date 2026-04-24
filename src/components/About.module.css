@@ -1,0 +1,268 @@
+.section {
+  position: relative;
+  padding: var(--pad-section) var(--pad-x);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  border-top: 1px solid var(--rule);
+}
+.marker {
+  position: absolute;
+  top: 40px;
+  left: var(--pad-x);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ---- About grid ---- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: start;
+  margin-top: 40px;
+}
+.left {
+  padding-right: 64px;
+  border-right: 1px solid var(--rule-strong);
+}
+.right {
+  padding-left: 64px;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.statement {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 52px);
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.01em;
+  color: var(--fg);
+}
+.statement .accent { color: var(--accent); }
+.body {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 20px 0;
+}
+.body strong {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+/* Photo */
+.photoWrap {
+  margin-top: auto;
+  width: 64%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #dedad4;
+  align-self: center;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(12%) contrast(1.04);
+  transition: filter 0.6s ease;
+}
+.photoWrap:hover .photo {
+  filter: grayscale(0%) contrast(1.04);
+}
+
+/* ---- Approach ---- */
+.approach {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 60px;
+}
+.approachLeft { padding-right: 64px; }
+.approachRight { padding-left: 64px; border-left: 1px solid var(--rule-strong); }
+.approachTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 52px);
+  text-transform: uppercase;
+  margin: 12px 0 0 0;
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+}
+.approachTitle .accent { color: var(--accent); }
+.approachLead {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 28px 0 0 0;
+}
+.approachLead em {
+  font-style: italic;
+  color: var(--fg);
+}
+
+/* Step list */
+.stepList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.step {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step:first-child { border-top: 1px solid var(--rule); }
+.stepHead {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.stepIdx {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.stepLabel {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(16px, 1.4vw, 20px);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--fg);
+}
+.stepText {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.75;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0;
+  padding-left: 42px;
+}
+
+/* ---- Why It Works ---- */
+.results {
+  position: relative;
+  margin-top: 100px;
+  border-top: 1px solid var(--rule);
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  overflow: hidden;
+}
+.resultsLeft { padding-right: 64px; }
+.resultsRight { padding-left: 64px; border-left: 1px solid var(--rule-strong); }
+/* Large background "FEELING" typographic anchor */
+.feelingBg {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(120px, 16vw, 220px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  opacity: 0.035;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.resultsTitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 52px);
+  text-transform: uppercase;
+  margin: 12px 0 0 0;
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+}
+.resultsTitle .accent { color: var(--accent); }
+.pillars {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.pillar {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 16px;
+}
+.pillarIdx {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  text-transform: uppercase;
+  min-width: 40px;
+}
+.pillarText {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(15px, 1.2vw, 18px);
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0;
+  color: var(--fg);
+  letter-spacing: 0.01em;
+}
+.closing {
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.closing strong {
+  color: var(--fg);
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .section { padding: var(--pad-section-mobile) 24px; }
+  .marker { top: 24px; left: 24px; }
+  .grid, .approach, .results { grid-template-columns: 1fr; }
+  .left, .approachLeft, .resultsLeft { padding-right: 0; border-right: 0; padding-bottom: 32px; }
+  .right { padding-left: 0; padding-top: 32px; border-top: 1px solid var(--rule); }
+  .approachRight, .resultsRight { padding-left: 0; padding-top: 32px; border-left: 0; border-top: 1px solid var(--rule); }
+  .approach, .results { margin-top: 60px; padding-top: 40px; gap: 0; }
+  .stepText { padding-left: 0; }
+  .photoWrap { aspect-ratio: 1 / 1; }
+}
