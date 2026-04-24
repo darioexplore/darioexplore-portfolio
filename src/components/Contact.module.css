@@ -7,14 +7,12 @@
   text-align: left;
 }
 .marker {
-  position: absolute;
-  top: 40px;
-  left: var(--pad-x);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   color: var(--accent);
   text-transform: uppercase;
+  margin-bottom: 28px;
 }
 .inner {
   max-width: var(--max-w);

@@ -6,14 +6,12 @@
   border-top: 1px solid var(--rule);
 }
 .marker {
-  position: absolute;
-  top: 40px;
-  left: var(--pad-x);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.22em;
   color: var(--accent);
   text-transform: uppercase;
+  margin-bottom: 28px;
 }
 .header {
   display: grid;
