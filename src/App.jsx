@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
-import SocialProof from './components/SocialProof'
+import SocialBar from './components/SocialBar'
 import Services from './components/Services'
 import FeaturedWork from './components/FeaturedWork'
 import About from './components/About'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
 import ProjectPage from './components/ProjectPage'
 import { getProject } from './data/projects'
 
@@ -28,7 +27,6 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
-  // Scroll reveal — re-run when returning to home
   useEffect(() => {
     if (route.type !== 'home') return
     const targets = document.querySelectorAll('.reveal')
@@ -72,13 +70,26 @@ export default function App() {
       <Navigation />
       <main>
         <Hero />
-        <SocialProof />
+        <SocialBar />
         <Services />
         <FeaturedWork />
-<About />
+        <About />
         <Contact />
       </main>
-      <Footer />
+      <footer style={{
+        borderTop: '1px solid var(--rule)',
+        padding: '16px var(--pad-x)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '10px',
+        letterSpacing: '0.2em',
+        textTransform: 'uppercase',
+        color: 'var(--muted)',
+      }}>
+        <span>© 2025 Dario Viegas</span>
+        <span>All Rights Reserved</span>
+      </footer>
     </>
   )
 }
