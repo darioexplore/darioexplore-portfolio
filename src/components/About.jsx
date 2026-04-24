@@ -21,9 +21,19 @@ const APPROACH_STEPS = [
 export default function About() {
   return (
     <section id="about" className={styles.section}>
-      {/* About: photo + body left, statement right */}
+      {/* About: marker + title left, body + photo right */}
       <div className={styles.grid}>
         <div className={styles.left}>
+          <div className={styles.marker}>04 — About / Positioning</div>
+          <h2 className={`${styles.statement} reveal`}>
+            About<span className={styles.accent}>.</span>
+          </h2>
+          <p className={`${styles.approachLead} reveal`}>
+            I create cinematic visuals that go beyond aesthetics —
+            work that makes people <span className={styles.accent}>feel</span> something.
+          </p>
+        </div>
+        <div className={styles.right}>
           <p className={`${styles.body} reveal`}>
             My approach blends <strong>storytelling, atmosphere, and natural beauty</strong>
             {' '}to craft films that connect on a deeper level.
@@ -36,14 +46,6 @@ export default function About() {
           <div className={`${styles.photoWrap} reveal`}>
             <img src="/photoperonal-14.jpg" alt="Dario Viegas" className={styles.photo} />
           </div>
-        </div>
-        <div className={styles.right}>
-          <div className={styles.marker}>04 — About / Positioning</div>
-          <div className={`${styles.kicker} reveal`}>About</div>
-          <h2 className={`${styles.statement} reveal`}>
-            I create cinematic visuals that go beyond aesthetics —
-            work that makes people <span className={styles.accent}>feel</span> something.
-          </h2>
         </div>
       </div>
 
