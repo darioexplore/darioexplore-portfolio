@@ -26,7 +26,6 @@ export default function About() {
       {/* About: statement left, body + cinematic image right */}
       <div className={styles.grid}>
         <div className={styles.left}>
-          <div className={`${styles.kicker} reveal`}>About</div>
           <h2 className={`${styles.statement} reveal`}>
             I create cinematic visuals that go beyond aesthetics —
             work that makes people <span className={styles.accent}>feel</span> something.
