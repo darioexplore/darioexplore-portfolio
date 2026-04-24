@@ -88,12 +88,11 @@
 
 /* ---- Approach ---- */
 .approach {
-  margin-top: 100px;
+  margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  border-top: 1px solid var(--rule);
-  padding-top: 60px;
+  padding-top: 0;
 }
 .approachLeft { padding-right: 64px; }
 .approachRight { padding-left: 64px; border-left: 1px solid var(--rule-strong); }

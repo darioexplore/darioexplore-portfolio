@@ -18,7 +18,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: end;
-  margin-bottom: 80px;
+  margin-bottom: 72px;
 }
 .title {
   font-family: var(--font-display);
