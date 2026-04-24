@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  background: #FFFFFF;
+  background: var(--bg);
   color: var(--fg);
   padding: var(--pad-section) var(--pad-x);
   border-top: 1px solid var(--rule);
