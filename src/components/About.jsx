@@ -43,7 +43,7 @@ export default function About() {
             <strong> timeless, immersive, and real.</strong>
           </p>
           <div className={`${styles.photoWrap} reveal`}>
-            <img src="/me.jpg" alt="Dario Viegas" className={styles.photo} />
+            <img src="/photoperonal-14.jpg" alt="Dario Viegas" className={styles.photo} />
           </div>
         </div>
       </div>
