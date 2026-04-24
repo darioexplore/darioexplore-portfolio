@@ -13,7 +13,7 @@
   border-bottom-color: var(--rule);
 }
 .inner {
-  max-width: var(--max-w);
+  max-width: calc(var(--max-w) + 2 * var(--pad-x));
   margin: 0 auto;
   padding: 22px var(--pad-x);
   display: flex;

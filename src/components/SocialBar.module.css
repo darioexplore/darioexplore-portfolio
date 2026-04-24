@@ -5,7 +5,7 @@
   border-bottom: 1px solid var(--rule);
 }
 .bar {
-  max-width: var(--max-w);
+  max-width: calc(var(--max-w) + 2 * var(--pad-x));
   margin: 0 auto;
   display: flex;
   align-items: center;
