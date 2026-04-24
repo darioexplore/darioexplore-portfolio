@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding: calc(var(--pad-section) + 20px) var(--pad-x);
+  padding: var(--pad-section) var(--pad-x);
   max-width: calc(var(--max-w) + 2 * var(--pad-x));
   margin: 0 auto;
   border-top: 1px solid var(--rule);
