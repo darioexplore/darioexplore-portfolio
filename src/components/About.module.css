@@ -170,7 +170,7 @@
   position: relative;
   margin-top: 100px;
   border-top: 1px solid var(--rule);
-  padding-top: 60px;
+  padding-top: 100px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
@@ -258,7 +258,7 @@
   .left, .approachLeft, .resultsLeft { padding-right: 0; border-right: 0; padding-bottom: 32px; }
   .right { padding-left: 0; padding-top: 32px; border-top: 1px solid var(--rule); }
   .approachRight, .resultsRight { padding-left: 0; padding-top: 32px; border-left: 0; border-top: 1px solid var(--rule); }
-  .approach, .results { margin-top: 60px; padding-top: 40px; gap: 0; }
+  .approach, .results { margin-top: 56px; padding-top: 56px; gap: 0; }
   .stepText { padding-left: 0; }
   .photoWrap { aspect-ratio: 1 / 1; }
 }
