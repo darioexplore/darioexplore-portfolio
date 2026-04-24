@@ -21,8 +21,6 @@ const APPROACH_STEPS = [
 export default function About() {
   return (
     <section id="about" className={styles.section}>
-      <div className={styles.marker}>04 — About / Positioning</div>
-
       {/* About: photo + body left, statement right */}
       <div className={styles.grid}>
         <div className={styles.left}>
@@ -40,6 +38,7 @@ export default function About() {
           </div>
         </div>
         <div className={styles.right}>
+          <div className={styles.marker}>04 — About / Positioning</div>
           <div className={`${styles.kicker} reveal`}>About</div>
           <h2 className={`${styles.statement} reveal`}>
             I create cinematic visuals that go beyond aesthetics —
