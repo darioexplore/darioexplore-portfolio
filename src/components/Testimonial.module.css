@@ -1,7 +1,7 @@
 .section {
   background: #111009;
   width: 100%;
-  padding: 140px var(--pad-x);
+  padding: var(--pad-section) var(--pad-x);
 }
 .inner {
   max-width: var(--max-w);
@@ -42,6 +42,6 @@
 }
 
 @media (max-width: 900px) {
-  .section { padding: 80px 24px; }
+  .section { padding: var(--pad-section-mobile) var(--pad-x); }
   .openMark { font-size: 72px; }
 }

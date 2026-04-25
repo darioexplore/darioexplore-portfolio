@@ -22,7 +22,6 @@ export default function Navigation() {
             <li><a href="#work">Selected Work</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#approach">Approach</a></li>
           </ul>
         </nav>
         <a href="#contact" className={styles.cta}>Start a Project</a>

@@ -65,12 +65,13 @@ export default function FeaturedWork() {
   return (
     <section id="work" className={styles.section}>
       <div className={styles.inner}>
-        <div className={styles.marker}>03 — Selected Work</div>
-
         <div className={styles.header}>
-          <h2 className={`${styles.title} reveal`}>
-            Selected <span className={styles.accent}>Work</span>
-          </h2>
+          <div className={styles.headerLeft}>
+            <div className={styles.marker}>03 — Selected Work</div>
+            <h2 className={`${styles.title} reveal`}>
+              Selected <span className={styles.accent}>Work</span>
+            </h2>
+          </div>
           <p className={`${styles.sub} reveal`}>
             A selection of cinematic films and visual stories.
           </p>

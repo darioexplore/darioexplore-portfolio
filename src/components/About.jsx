@@ -1,85 +1,50 @@
 import styles from './About.module.css'
 
-const APPROACH_STEPS = [
-  {
-    idx: '01',
-    label: 'Feel First',
-    text: 'Every project starts with one question — How should this feel? Emotion leads, aesthetics follow.',
-  },
-  {
-    idx: '02',
-    label: 'Shape the Story',
-    text: 'I work closely with brands to find the visual language that feels natural and aligned — never forced or overproduced.',
-  },
-  {
-    idx: '03',
-    label: 'Make it Stay',
-    text: "The result is work that doesn't just look good. It stays with people long after they've seen it.",
-  },
-]
-
 export default function About() {
   return (
     <section id="about" className={styles.section}>
-      {/* Approach: title left, bullet steps right */}
-      <div id="approach" className={styles.approach}>
-        <div className={styles.approachLeft}>
-          <div className={`${styles.marker} reveal`}>05 — Approach</div>
-          <h3 className={`${styles.approachTitle} reveal`}>
-            Approach<span className={styles.accent}>.</span>
-          </h3>
-          <p className={`${styles.approachLead} reveal`}>
-            Every project starts with a simple idea:<br />
-            <em>How should this feel?</em>
-          </p>
-        </div>
-        <div className={styles.approachRight}>
-          <ul className={styles.stepList}>
-            {APPROACH_STEPS.map((s) => (
-              <li key={s.idx} className={`${styles.step} reveal`}>
-                <div className={styles.stepHead}>
-                  <span className={styles.stepIdx}>{s.idx}</span>
-                  <span className={styles.stepLabel}>{s.label}</span>
-                </div>
-                <p className={styles.stepText}>{s.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <div className={styles.inner}>
+        <div className={styles.textCol}>
+          <div className={`${styles.marker} reveal`}>04 — About</div>
+          <h2 className={`${styles.title} reveal`}>
+            About<span className={styles.accent}>.</span>
+          </h2>
 
-      {/* Why It Works */}
-      <div className={styles.results}>
-        <div className={styles.feelingBg} aria-hidden="true">Feeling</div>
-        <div className={styles.resultsLeft}>
-          <div className={`${styles.marker} reveal`}>07 — Why It Works</div>
-          <h3 className={`${styles.resultsTitle} reveal`}>
-            Why It <span className={styles.accent}>Works</span>
-          </h3>
-        </div>
-        <div className={styles.resultsRight}>
+          <p className={`${styles.lead} reveal`}>
+            I'm Dario, a filmmaker, photographer, and visual storyteller
+            creating cinematic work around travel, culture, and human connection.
+          </p>
+
           <p className={`${styles.body} reveal`}>
-            In a world of endless content, attention comes from <strong>feeling</strong> — not just visuals.
-            My work is designed to:
+            I focus on capturing what a place feels like, not just how it
+            looks, turning moments, landscapes, and experiences into stories
+            people remember.
           </p>
-          <ul className={styles.pillars}>
-            <li className={`${styles.pillar} reveal`}>
-              <span className={styles.pillarIdx}>01 —</span>
-              <p className={styles.pillarText}>Capture attention instantly</p>
-            </li>
-            <li className={`${styles.pillar} reveal`}>
-              <span className={styles.pillarIdx}>02 —</span>
-              <p className={styles.pillarText}>Build emotional connection</p>
-            </li>
-            <li className={`${styles.pillar} reveal`}>
-              <span className={styles.pillarIdx}>03 —</span>
-              <p className={styles.pillarText}>Elevate brand perception</p>
-            </li>
-          </ul>
+
+          <p className={`${styles.body} reveal`}>
+            Through films, photography, and brand collaborations, I work
+            with hotels, tourism boards, and lifestyle brands to create
+            visual narratives that feel honest, cinematic, and timeless.
+          </p>
+
           <p className={`${styles.closing} reveal`}>
-            Because people don't remember content.<br />
-            <strong>They remember how it made them feel.</strong>
+            Because the best visuals do more than look beautiful.<br />
+            <strong>They make people feel something.</strong>
           </p>
+        </div>
+
+        <div className={styles.photoCol}>
+          <div className={styles.frame}>
+            <img
+              src="/me.jpg"
+              alt="Dario Viegas — portrait"
+              className={`${styles.photo} reveal`}
+              loading="lazy"
+            />
+          </div>
+          <div className={`${styles.caption} reveal`}>
+            Dario Viegas <span className={styles.accent}>/</span> On location
+          </div>
         </div>
       </div>
     </section>

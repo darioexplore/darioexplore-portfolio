@@ -71,30 +71,33 @@ const SERVICES = [
 export default function Services() {
   return (
     <section id="services" className={styles.section}>
-      <div className={styles.marker}>06 — Services</div>
-
-      <div className={styles.header}>
-        <h2 className={`${styles.title} reveal`}>
-          <span className={styles.accent}>Services</span>
-        </h2>
-        <p className={`${styles.lead} reveal`}>
-          A minimal set of services, executed with cinematic intent.
-          Every project is shaped around emotion — not just aesthetics.
-        </p>
-      </div>
-
-      <div className={styles.grid}>
-        {SERVICES.map((s) => (
-          <div key={s.idx} className={`${styles.cell} reveal`}>
-            <div className={styles.cellIndex}>{s.idx} / Service</div>
-            <h3 className={styles.cellTitle}>{s.title}</h3>
-            <p className={styles.cellBody}>{s.body}</p>
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          <div className={styles.headerLeft}>
+            <div className={styles.marker}>06 — Services</div>
+            <h2 className={`${styles.title} reveal`}>
+              <span className={styles.accent}>Services</span>
+            </h2>
           </div>
-        ))}
-      </div>
+          <p className={`${styles.lead} reveal`}>
+            A minimal set of services, executed with cinematic intent.
+            Every project is shaped around emotion — not just aesthetics.
+          </p>
+        </div>
 
-      <div className={`${styles.footerNote} reveal`}>
-        Available <span className={styles.accent}>Worldwide</span>.
+        <div className={styles.grid}>
+          {SERVICES.map((s) => (
+            <div key={s.idx} className={`${styles.cell} reveal`}>
+              <div className={styles.cellIndex}>{s.idx} / Service</div>
+              <h3 className={styles.cellTitle}>{s.title}</h3>
+              <p className={styles.cellBody}>{s.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className={`${styles.footerNote} reveal`}>
+          Available <span className={styles.accent}>Worldwide</span>.
+        </div>
       </div>
     </section>
   )
