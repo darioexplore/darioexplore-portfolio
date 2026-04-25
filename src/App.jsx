@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import FilmGrain from './components/FilmGrain'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import SocialBar from './components/SocialBar'
@@ -67,12 +68,13 @@ export default function App() {
 
   return (
     <>
+      <FilmGrain />
       <Navigation />
       <main>
         <Hero />
         <SocialBar />
-        <Services />
         <FeaturedWork />
+        <Services />
         <About />
         <Contact />
       </main>
