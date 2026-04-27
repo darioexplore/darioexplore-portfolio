@@ -202,11 +202,9 @@
 }
 
 @media (max-width: 900px) {
-  /* dvh = dynamic viewport height — excludes iOS Safari browser chrome so
-     the hero fills exactly the visible screen, no gap at top or cut-off at bottom. */
-  .hero { height: 100dvh; }
-  .marker { top: 88px; left: 24px; }
-  .headlineWrap { top: auto; bottom: 48px; left: 24px; right: 24px; gap: 14px; }
+  /* Marker near top, content anchored directly below it — no large void. */
+  .marker { top: 32px; left: 24px; }
+  .headlineWrap { top: 80px; bottom: auto; left: 24px; right: 24px; gap: 14px; }
   .headline { font-size: 9.5vw; }
   .sub { font-size: 13px; }
   .ctaRow { gap: 10px; }
