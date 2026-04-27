@@ -117,13 +117,24 @@ export default function Contact() {
               onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
               required
             />
-            <input
-              className={styles.field}
-              type="text"
-              placeholder="Company"
-              value={form.company}
-              onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-            />
+            <div className={styles.selectWrap}>
+              <select
+                className={`${styles.field} ${styles.select} ${!form.company ? styles.selectEmpty : ''}`}
+                value={form.company}
+                onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
+                required
+              >
+                <option value="" disabled>What's the type of your company?</option>
+                <option value="Tourism Board">Tourism Board</option>
+                <option value="Travel Agency">Travel Agency</option>
+                <option value="Adventure/Travel Brand">Adventure/Travel Brand</option>
+                <option value="Individual">Individual</option>
+                <option value="Content Creator/Influencer">Content Creator/Influencer</option>
+                <option value="Hotel/Resort/Accommodation Brand">Hotel/Resort/Accommodation Brand</option>
+                <option value="Other">Other</option>
+              </select>
+              <span className={styles.selectArrow} aria-hidden="true">↓</span>
+            </div>
             <textarea
               className={`${styles.field} ${styles.textarea}`}
               placeholder="Message"

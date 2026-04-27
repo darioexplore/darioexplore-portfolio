@@ -136,6 +136,39 @@
   margin-top: 0;
   min-height: 120px;
 }
+
+/* Select dropdown */
+.selectWrap {
+  position: relative;
+  width: 100%;
+}
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 32px; /* room for arrow */
+}
+.selectEmpty {
+  color: var(--muted);
+  opacity: 0.7;
+}
+.select option {
+  background: var(--bg);
+  color: var(--fg);
+  text-transform: none;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+.selectArrow {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--muted);
+  pointer-events: none;
+  line-height: 1;
+}
 .cta {
   display: inline-block;
   background: var(--accent);
