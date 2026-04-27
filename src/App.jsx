@@ -8,9 +8,15 @@ import FeaturedWork from './components/FeaturedWork'
 import About from './components/About'
 import Contact from './components/Contact'
 import ProjectPage from './components/ProjectPage'
+import LinksPage from './components/LinksPage'
+import AdminPage from './components/AdminPage'
 import { getProject } from './data/projects'
 
-function getRouteFromHash() {
+function getRoute() {
+  const path = window.location.pathname
+  if (path === '/links') return { type: 'links' }
+  if (path === '/links/admin') return { type: 'admin' }
+
   const hash = window.location.hash.replace('#', '')
   if (hash.startsWith('project/')) {
     const slug = hash.replace('project/', '')
@@ -20,10 +26,10 @@ function getRouteFromHash() {
 }
 
 export default function App() {
-  const [route, setRoute] = useState(getRouteFromHash)
+  const [route, setRoute] = useState(getRoute)
 
   useEffect(() => {
-    const onHash = () => setRoute(getRouteFromHash())
+    const onHash = () => setRoute(getRoute())
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
@@ -49,6 +55,10 @@ export default function App() {
     targets.forEach((el) => io.observe(el))
     return () => io.disconnect()
   }, [route])
+
+  // Standalone pages — no nav/footer
+  if (route.type === 'links') return <LinksPage />
+  if (route.type === 'admin') return <AdminPage />
 
   if (route.type === 'project') {
     const project = getProject(route.slug)
