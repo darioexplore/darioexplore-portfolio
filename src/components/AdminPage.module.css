@@ -4,6 +4,22 @@
   padding: 60px 24px 80px;
 }
 
+/* ── Login ── */
+.loginWrap {
+  max-width: 360px;
+  margin: 15vh auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Admin container ── */
 .container {
   max-width: 560px;
   margin: 0 auto;
@@ -12,13 +28,19 @@
   gap: 48px;
 }
 
-/* ---- Header ---- */
+/* ── Header ── */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--rule);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .marker {
@@ -41,7 +63,22 @@
 
 .back:hover { color: var(--fg); }
 
-/* ---- Labels ---- */
+.logoutBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.logoutBtn:hover { color: var(--accent); }
+
+/* ── Labels ── */
 .label {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -52,12 +89,7 @@
   display: block;
 }
 
-/* ---- Inputs ---- */
-.field {
-  display: flex;
-  flex-direction: column;
-}
-
+/* ── Inputs ── */
 .input {
   background: transparent;
   border: none;
@@ -72,29 +104,24 @@
   text-transform: none;
 }
 
-.input::placeholder {
-  color: var(--muted);
-  opacity: 0.45;
-}
+.input::placeholder { color: var(--muted); opacity: 0.45; }
+.input:focus { border-bottom-color: var(--fg); }
 
-.input:focus {
-  border-bottom-color: var(--fg);
-}
-
-/* ---- Form ---- */
+/* ── Forms ── */
 .form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.row {
+.formRow {
   display: flex;
   align-items: center;
   gap: 20px;
   margin-top: 8px;
 }
 
+/* ── Buttons ── */
 .btn {
   background: var(--fg);
   color: var(--bg);
@@ -111,6 +138,21 @@
 
 .btn:hover { background: var(--accent); }
 
+.cancelBtn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 12px 0;
+}
+
+.cancelBtn:hover { color: var(--fg); }
+
+/* ── Feedback ── */
 .msg {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -121,11 +163,8 @@
 
 .err { color: var(--accent); }
 
-/* ---- Link list ---- */
-.list {
-  display: flex;
-  flex-direction: column;
-}
+/* ── Link list ── */
+.list { display: flex; flex-direction: column; }
 
 .empty {
   font-family: var(--font-mono);
@@ -139,17 +178,15 @@
 }
 
 .linkRow {
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 0;
-  border-top: 1px solid var(--rule);
 }
 
-.linkRow:last-child {
-  border-bottom: 1px solid var(--rule);
-}
+.linkRow:last-child { border-bottom: 1px solid var(--rule); }
 
 .linkInfo {
   display: flex;
@@ -179,21 +216,41 @@
   text-overflow: ellipsis;
 }
 
-.del {
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.actionBtn {
   background: none;
   border: 1px solid var(--rule);
-  padding: 8px 14px;
+  padding: 7px 14px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
   cursor: pointer;
-  flex-shrink: 0;
   transition: border-color 0.2s, color 0.2s;
 }
 
-.del:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.actionBtn:hover {
+  border-color: var(--fg);
+  color: var(--fg);
+}
+
+/* ── Inline edit ── */
+.editBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.editActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
 }
