@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styles from './Hero.module.css'
 
 const LOGOS = [
@@ -34,8 +33,6 @@ function Ticker() {
 }
 
 export default function Hero() {
-  const [reelOpen, setReelOpen] = useState(false)
-
   return (
     <>
       <section id="top" className={styles.hero}>
@@ -72,29 +69,12 @@ export default function Hero() {
             <a href="mailto:hello@darioexplore.com" className={styles.ctaBtn}>
               Start a Project
             </a>
-            <button className={styles.reelBtn} onClick={() => setReelOpen(true)}>
-              Watch Reel ↗
-            </button>
           </div>
         </div>
       </section>
 
       <Ticker />
 
-      {reelOpen && (
-        <div className={styles.modal} onClick={() => setReelOpen(false)}>
-          <div className={styles.modalInner} onClick={e => e.stopPropagation()}>
-            <button className={styles.modalClose} onClick={() => setReelOpen(false)}>✕</button>
-            <iframe
-              className={styles.modalIframe}
-              src="https://player.vimeo.com/video/000000000?autoplay=1&title=0&byline=0&portrait=0"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              title="Dario Viegas — Reel 2025"
-            />
-          </div>
-        </div>
-      )}
     </>
   )
 }
