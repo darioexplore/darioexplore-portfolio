@@ -48,7 +48,7 @@ const SOCIALS = [
 ]
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', company: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [status, setStatus] = useState('idle')
 
   async function handleSubmit(e) {
@@ -62,7 +62,7 @@ export default function Contact() {
       })
       if (res.ok) {
         setStatus('success')
-        setForm({ name: '', company: '', message: '' })
+        setForm({ name: '', email: '', company: '', message: '' })
       } else {
         setStatus('error')
       }
@@ -107,6 +107,14 @@ export default function Contact() {
               placeholder="Name"
               value={form.name}
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+              required
+            />
+            <input
+              className={styles.field}
+              type="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
               required
             />
             <input
