@@ -1,4 +1,5 @@
 import styles from './FeaturedWork.module.css'
+import { imgSrc } from '../utils/imgOptimize'
 
 const WORKS = [
   {
@@ -87,7 +88,7 @@ export default function FeaturedWork() {
             >
               <div className={`${styles.frame} ${styles[w.frame]}`}>
                 <span className={styles.index}>N° {w.idx}</span>
-                <img className={styles.img} src={w.image} alt={w.title} loading="lazy" />
+                <img className={styles.img} src={imgSrc(w.image, 900, 80)} alt={w.title} loading="lazy" decoding="async" />
                 <span className={styles.titleOverlay}>{w.title}</span>
                 <span className={styles.metaOverlay}>{w.meta}</span>
               </div>
