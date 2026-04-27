@@ -97,12 +97,15 @@ export default function AdminPage() {
   }
 
   async function deleteLink(id) {
-    if (!confirm('Delete this link?')) return
     const r = await fetch(`/api/links/${id}`, {
       method: 'DELETE',
       headers: authHeaders(),
     })
-    if (!r.ok) { flash('Something went wrong.', true); return }
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}))
+      flash(`Error ${r.status}: ${err.error || 'unknown'}`, true)
+      return
+    }
     flash('Deleted.')
     fetchLinks()
   }
@@ -125,7 +128,11 @@ export default function AdminPage() {
       headers: authHeaders(),
       body: JSON.stringify({ title: editTitle, url: editUrl }),
     })
-    if (!r.ok) { flash('Something went wrong.', true); return }
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}))
+      flash(`Error ${r.status}: ${err.error || 'unknown'}`, true)
+      return
+    }
     cancelEdit()
     flash('Saved.')
     fetchLinks()

@@ -6,7 +6,6 @@ const redis = new Redis({
 })
 
 function getPassword(req) {
-  // Accept password from Authorization header or request body
   const auth = req.headers.authorization
   if (auth?.startsWith('Bearer ')) return auth.slice(7)
   return req.body?.password
@@ -21,24 +20,34 @@ export default async function handler(req, res) {
   const { id } = req.query
   const password = getPassword(req)
 
+  console.log('[links/id] method:', req.method, 'id:', id,
+    'auth header:', !!req.headers.authorization,
+    'pw match:', password === process.env.ADMIN_PASSWORD,
+    'ADMIN_PASSWORD set:', !!process.env.ADMIN_PASSWORD)
+
   if (!password || password !== process.env.ADMIN_PASSWORD) {
     return res.status(401).json({ error: 'Unauthorized' })
   }
 
-  const links = (await redis.get('dv_links')) ?? []
+  try {
+    const links = (await redis.get('dv_links')) ?? []
 
-  if (req.method === 'PUT') {
-    const { title, url } = req.body ?? {}
-    if (!title || !url) return res.status(400).json({ error: 'title and url required' })
-    const updated = links.map(l => l.id === id ? { ...l, title, url } : l)
-    await redis.set('dv_links', updated)
-    return res.json(updated.find(l => l.id === id))
+    if (req.method === 'PUT') {
+      const { title, url } = req.body ?? {}
+      if (!title || !url) return res.status(400).json({ error: 'title and url required' })
+      const updated = links.map(l => l.id === id ? { ...l, title, url } : l)
+      await redis.set('dv_links', updated)
+      return res.json(updated.find(l => l.id === id))
+    }
+
+    if (req.method === 'DELETE') {
+      await redis.set('dv_links', links.filter(l => l.id !== id))
+      return res.json({ ok: true })
+    }
+
+    return res.status(405).json({ error: 'Method not allowed' })
+  } catch (e) {
+    console.error('[links/id] error:', e.message)
+    return res.status(500).json({ error: e.message })
   }
-
-  if (req.method === 'DELETE') {
-    await redis.set('dv_links', links.filter(l => l.id !== id))
-    return res.json({ ok: true })
-  }
-
-  return res.status(405).json({ error: 'Method not allowed' })
 }
