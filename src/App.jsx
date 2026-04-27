@@ -13,7 +13,7 @@ import AdminPage from './components/AdminPage'
 import { getProject } from './data/projects'
 
 function getRoute() {
-  const path = window.location.pathname
+  const path = window.location.pathname.replace(/\/$/, '') || '/'
   if (path === '/links') return { type: 'links' }
   if (path === '/links/admin') return { type: 'admin' }
 
