@@ -79,11 +79,15 @@ export default function AdminPage() {
 
   const pw = sessionStorage.getItem(SESSION_KEY) || password
 
+  function authHeaders() {
+    return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${pw}` }
+  }
+
   async function addLink(e) {
     e.preventDefault()
     const r = await fetch('/api/links', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: authHeaders(),
       body: JSON.stringify({ title, url, password: pw }),
     })
     if (!r.ok) { flash('Something went wrong.', true); return }
@@ -96,8 +100,7 @@ export default function AdminPage() {
     if (!confirm('Delete this link?')) return
     const r = await fetch(`/api/links/${id}`, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: pw }),
+      headers: authHeaders(),
     })
     if (!r.ok) { flash('Something went wrong.', true); return }
     flash('Deleted.')
@@ -119,8 +122,8 @@ export default function AdminPage() {
   async function saveEdit(id) {
     const r = await fetch(`/api/links/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: editTitle, url: editUrl, password: pw }),
+      headers: authHeaders(),
+      body: JSON.stringify({ title: editTitle, url: editUrl }),
     })
     if (!r.ok) { flash('Something went wrong.', true); return }
     cancelEdit()
