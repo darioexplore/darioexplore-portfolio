@@ -18,14 +18,20 @@
   z-index: 1;
 }
 
-/* ---- Avatar ---- */
+/* ---- Avatar + orbit ---- */
+.avatarWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+
 .avatar {
   width: 96px;
   height: 96px;
   border-radius: 50%;
   overflow: hidden;
-  margin-bottom: 24px;
-  flex-shrink: 0;
 }
 
 .avatar img {
@@ -33,6 +39,38 @@
   height: 100%;
   object-fit: cover;
   filter: grayscale(100%) contrast(1.05);
+}
+
+/* Paper plane orbit
+   The orbitRing sits at the avatar's exact centre (top:50%;left:50%)
+   and spins. The .plane child is offset up by the orbit radius so it
+   sits just outside the circle. Because the plane inherits the ring's
+   rotation it always faces its direction of travel — no counter-rotate
+   needed: at 12 o'clock the plane (pointing east) travels east ✓      */
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbitRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  animation: orbit 5s linear infinite;
+}
+
+.plane {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: -9px;               /* centre icon at ring origin */
+  left: -9px;
+  color: var(--accent);
+  /* avatar radius 48px + 14px gap = 62px orbit radius */
+  transform: translateY(-62px);
+  filter: drop-shadow(0 1px 5px rgba(192, 57, 43, 0.45));
 }
 
 /* ---- Identity ---- */
