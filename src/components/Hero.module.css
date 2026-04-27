@@ -202,10 +202,8 @@
 }
 
 @media (max-width: 900px) {
-  /* Nav is fixed on mobile so hero fills full 100vh from top of screen.
-     Push marker down past the nav bar height (~62px) + breathing room. */
-  .marker { top: 80px; left: 24px; }
-  .headlineWrap { bottom: 48px; left: 24px; right: 24px; gap: 18px; }
+  .marker { top: 96px; left: 24px; }
+  .headlineWrap { bottom: 40px; left: 24px; right: 24px; gap: 18px; }
   .headline { font-size: 10vw; }
   .sub { font-size: 14px; }
   .ctaRow { gap: 12px; }
