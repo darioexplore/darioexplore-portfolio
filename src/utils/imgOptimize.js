@@ -1,13 +1,10 @@
 /**
- * Returns a Vercel Image Optimization URL for local assets.
- * Automatically serves WebP/AVIF and resizes to the requested width.
+ * Routes local images through /api/img which converts to WebP and resizes.
+ * Processed images are cached on Vercel's edge for 1 year.
  * External URLs (http/https) are passed through unchanged.
- *
- * Vercel docs: https://vercel.com/docs/image-optimization
  */
-export function imgSrc(src, width = 1600, quality = 80) {
+export function imgSrc(src, width = 1200, quality = 80) {
   if (!src) return src
-  // External images — pass through
   if (src.startsWith('http://') || src.startsWith('https://')) return src
-  return `/_vercel/image?url=${encodeURIComponent(src)}&w=${width}&q=${quality}`
+  return `/api/img?src=${encodeURIComponent(src)}&w=${width}&q=${quality}`
 }
