@@ -18,8 +18,16 @@ export default function LinksPage() {
       <FilmGrain opacity={0.08} fps={24} />
 
       <div className={styles.container}>
-        <div className={styles.avatar}>
-          <img src="/me.jpg" alt="Dario Viegas" />
+        <div className={styles.avatarWrap}>
+          <div className={styles.avatar}>
+            <img src="/me.jpg" alt="Dario Viegas" />
+          </div>
+          {/* Paper plane orbiting the photo */}
+          <div className={styles.orbitRing} aria-hidden="true">
+            <svg className={styles.plane} viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </div>
         </div>
 
         <h1 className={styles.name}>DARIO VIEGAS<span className={styles.dot}>.</span></h1>
