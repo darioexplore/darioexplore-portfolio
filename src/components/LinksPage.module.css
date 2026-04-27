@@ -41,36 +41,45 @@
   filter: grayscale(100%) contrast(1.05);
 }
 
-/* Paper plane orbit
-   The orbitRing sits at the avatar's exact centre (top:50%;left:50%)
-   and spins. The .plane child is offset up by the orbit radius so it
-   sits just outside the circle. Because the plane inherits the ring's
-   rotation it always faces its direction of travel — no counter-rotate
-   needed: at 12 o'clock the plane (pointing east) travels east ✓      */
+/* ---- Paper plane orbit ---- */
 @keyframes orbit {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-.orbitRing {
+/* Centering wrapper: translate only, so the animation can rotate freely */
+.orbitWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0;
-  height: 0;
-  animation: orbit 5s linear infinite;
+  transform: translate(-50%, -50%);
+  width: 164px;
+  height: 164px;
+  pointer-events: none;
 }
 
-.plane {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  top: -9px;               /* centre icon at ring origin */
-  left: -9px;
-  color: var(--accent);
-  /* avatar radius 48px + 14px gap = 62px orbit radius */
-  transform: translateY(-62px);
-  filter: drop-shadow(0 1px 5px rgba(192, 57, 43, 0.45));
+/* Single SVG holds both the dashed trail and the paper plane.
+   Rotating the SVG as one element keeps trail + plane always in sync. */
+.orbitSvg {
+  width: 100%;
+  height: 100%;
+  color: var(--fg);
+  animation: orbit 5s linear infinite;
+  overflow: visible;
+}
+
+/* Outlined origami paper plane — white fill so it reads as real paper */
+.planeGroup {
+  fill: var(--bg);
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+/* Hatching lines slightly thinner than the outline */
+.planeGroup line {
+  stroke-width: 0.85;
 }
 
 /* ---- Identity ---- */
