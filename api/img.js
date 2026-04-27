@@ -23,9 +23,9 @@ export default async function handler(req, res) {
       .webp({ quality: parseInt(q, 10) })
       .toBuffer()
 
-    // Cache on Vercel's edge for 1 year — processed once, served forever after
+    // s-maxage tells Vercel's CDN to cache; max-age tells the browser to cache
     res.setHeader('Content-Type', 'image/webp')
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')
+    res.setHeader('Cache-Control', 'public, s-maxage=31536000, max-age=31536000, immutable')
     res.end(output)
   } catch {
     res.status(500).end()
