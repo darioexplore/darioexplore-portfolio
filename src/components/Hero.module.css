@@ -33,7 +33,8 @@
 }
 .headlineWrap {
   position: absolute;
-  bottom: 80px;
+  top: 170px;
+  bottom: auto;
   left: var(--pad-x);
   right: var(--pad-x);
   z-index: 2;
