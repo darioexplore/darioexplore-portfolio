@@ -5,7 +5,7 @@ export default function About() {
     <section id="about" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.textCol}>
-          <div className={`${styles.marker} reveal`}>04 — About</div>
+          <div className={`${styles.marker} reveal`}>03 — About</div>
           <h2 className={`${styles.title} reveal`}>
             About<span className={styles.accent}>.</span>
           </h2>

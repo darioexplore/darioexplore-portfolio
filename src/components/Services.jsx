@@ -74,7 +74,7 @@ export default function Services() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.marker}>06 — Services</div>
+            <div className={styles.marker}>02 — Services</div>
             <h2 className={`${styles.title} reveal`}>
               <span className={styles.accent}>Services</span>
             </h2>

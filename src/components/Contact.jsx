@@ -73,7 +73,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className={styles.section}>
-      <div className={styles.marker}>08 — Contact</div>
+      <div className={styles.marker}>04 — Contact</div>
 
       <div className={styles.inner}>
         <h2 className={`${styles.headline} reveal`}>

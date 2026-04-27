@@ -67,7 +67,7 @@ export default function FeaturedWork() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.marker}>03 — Selected Work</div>
+            <div className={styles.marker}>01 — Selected Work</div>
             <h2 className={`${styles.title} reveal`}>
               Selected <span className={styles.accent}>Work</span>
             </h2>
