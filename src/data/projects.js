@@ -114,8 +114,10 @@ export const PROJECTS = [
     year: '2024',
     location: 'Portugal',
     video: 'https://www.youtube.com/embed/LTFWHemoAiI',
+    videoTitle: 'DJI Air 3S',
+    galleryTitle: 'DJI Osmo Pocket 4',
     description:
-      'A video project for the launch of the DJI Air 3S — aerial precision meets cinematic storytelling, exploring the boundary between technology and natural environments.',
+      'An ongoing creative partnership with DJI across multiple products and campaigns — from aerial systems to handheld cameras, producing cinematic content that puts their technology in its most compelling light.',
     images: [
       '/portfolio/dji/Sony-400-800-263.jpg',
       '/portfolio/dji/Sony-400-800-264.jpg',
