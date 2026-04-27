@@ -98,6 +98,8 @@
 
 /* ── Mobile breakpoint ── */
 @media (max-width: 900px) {
+  /* Fixed so the nav floats over the hero — hero video fills full viewport */
+  .nav     { position: fixed; width: 100%; }
   .inner   { padding: 18px 24px; }
   .links   { display: none; }
   .cta     { display: none; }
