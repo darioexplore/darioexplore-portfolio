@@ -22,10 +22,35 @@ export default function LinksPage() {
           <div className={styles.avatar}>
             <img src="/me.jpg" alt="Dario Viegas" />
           </div>
-          {/* Paper plane orbiting the photo */}
-          <div className={styles.orbitRing} aria-hidden="true">
-            <svg className={styles.plane} viewBox="0 0 24 24" fill="currentColor">
-              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          {/* Paper plane + dashed trail orbiting the photo.
+               Both live in one SVG so they rotate as a unit.
+               Trail arc: 120° of the circle behind the plane.
+               Plane: outlined origami style with fold hatching. */}
+          <div className={styles.orbitWrapper} aria-hidden="true">
+            <svg className={styles.orbitSvg} viewBox="-82 -82 164 164">
+              {/* 120° dashed trail — the arc the plane just flew */}
+              <path
+                d="M -53.7 31 A 62 62 0 0 1 0 -62"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeDasharray="5 7"
+                strokeLinecap="round"
+                opacity="0.3"
+              />
+              {/* Plane at 12 o'clock, nose pointing east (CW travel dir) */}
+              <g transform="translate(0,-62)" className={styles.planeGroup}>
+                {/* Upper wing */}
+                <path d="M 11 0 L -10 -12 L -3 0 Z" />
+                {/* Lower wing (mirror) */}
+                <path d="M 11 0 L -10  12 L -3 0 Z" />
+                {/* Centre spine */}
+                <line x1="11" y1="0"   x2="-3" y2="0"  />
+                {/* Tail-fold hatching on upper wing */}
+                <line x1="-10" y1="-12" x2="-7" y2="-3" />
+                <line x1="-8"  y1="-12" x2="-5" y2="-4" />
+                <line x1="-6"  y1="-11" x2="-4" y2="-6" />
+              </g>
             </svg>
           </div>
         </div>
