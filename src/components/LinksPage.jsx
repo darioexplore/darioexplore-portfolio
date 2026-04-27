@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import FilmGrain from './FilmGrain'
+import LinkIcon from './LinkIcon'
 import styles from './LinksPage.module.css'
 
 export default function LinksPage() {
@@ -33,6 +34,7 @@ export default function LinksPage() {
               rel="noopener noreferrer"
               className={styles.link}
             >
+              <LinkIcon url={link.url} className={styles.icon} />
               {link.title}
             </a>
           ))}
