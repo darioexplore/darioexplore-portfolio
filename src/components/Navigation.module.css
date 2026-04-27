@@ -1,17 +1,23 @@
 .nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 200;
   width: 100%;
   transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
   border-bottom: 1px solid transparent;
 }
 .nav.scrolled {
-  background: rgba(245, 243, 239, 0.92);
+  background: rgba(253, 253, 253, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--rule);
 }
+/* Keep header opaque when mobile menu is open */
+.nav.menuActive {
+  background: var(--bg);
+  border-bottom-color: var(--rule);
+}
+
 .inner {
   max-width: calc(var(--max-w) + 2 * var(--pad-x));
   margin: 0 auto;
@@ -21,6 +27,8 @@
   justify-content: space-between;
   gap: 24px;
 }
+
+/* ── Logo ── */
 .logo {
   font-family: var(--font-display);
   font-weight: 500;
@@ -28,11 +36,14 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--fg);
+  text-decoration: none;
 }
-.logo .dot {
+.logo .dot, .dot {
   color: var(--accent);
   margin-left: 2px;
 }
+
+/* ── Desktop links ── */
 .links {
   display: flex;
   gap: 40px;
@@ -47,29 +58,101 @@
   text-transform: uppercase;
   color: var(--fg);
   opacity: 0.85;
+  text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
 .links a:hover {
   color: var(--accent);
   opacity: 1;
 }
+
+/* ── Desktop CTA ── */
 .cta {
   background: var(--accent);
-  color: var(--fg);
+  color: var(--bg);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 10px 24px;
-  border-radius: 0;
+  text-decoration: none;
   transition: transform 0.2s ease, filter 0.2s ease;
+  white-space: nowrap;
 }
 .cta:hover {
   filter: brightness(1.08);
   transform: translateY(-1px);
 }
 
-@media (max-width: 900px) {
-  .inner { padding: 16px 24px; }
-  .links { display: none; }
+/* ── Hamburger (hidden on desktop) ── */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--fg);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+  flex-shrink: 0;
 }
+
+/* ── Mobile breakpoint ── */
+@media (max-width: 900px) {
+  .inner   { padding: 18px 24px; }
+  .links   { display: none; }
+  .cta     { display: none; }
+  .hamburger { display: block; }
+}
+
+/* ── Mobile menu overlay ── */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 199;           /* just below the sticky header (z-index: 200) */
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 80px 40px 60px;
+  animation: menuIn 0.22s ease forwards;
+}
+
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Stacked nav links — large display type */
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+.mobileLinks a {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 8vw, 48px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobileLinks a:hover { color: var(--accent); }
+
+/* CTA at the bottom — mono pill style */
+.mobileCta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--fg);
+  padding: 14px 36px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.mobileCta:hover { background: var(--accent); }
