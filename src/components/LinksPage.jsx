@@ -95,7 +95,7 @@ export default function LinksPage() {
             <span className={styles.pingDot} aria-hidden="true" />
             Available for work
           </div>
-          <a href="/#contact" className={styles.ctaBtn}>
+          <a href="/#contact" target="_blank" rel="noopener noreferrer" className={styles.ctaBtn}>
             Get in touch →
           </a>
         </div>

@@ -34,6 +34,22 @@ export default function App() {
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
 
+  // Scroll to a section anchor after the home page has rendered.
+  // Needed because the SPA mounts fresh when arriving from /links,
+  // so native anchor scrolling fires before the element exists in the DOM.
+  useEffect(() => {
+    if (route.type !== 'home') return
+    const hash = window.location.hash.slice(1)
+    if (!hash || hash.startsWith('project/')) return
+    const scroll = () => {
+      const el = document.getElementById(hash)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+    // One tick lets React commit the DOM, then scroll
+    const t = setTimeout(scroll, 80)
+    return () => clearTimeout(t)
+  }, [route.type])
+
   useEffect(() => {
     if (route.type !== 'home') return
     const targets = document.querySelectorAll('.reveal')
