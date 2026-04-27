@@ -113,8 +113,9 @@ export const PROJECTS = [
     category: 'Tech / Brand',
     year: '2024',
     location: 'Portugal',
+    video: 'https://www.youtube.com/embed/LTFWHemoAiI',
     description:
-      'Aerial precision meets cinematic storytelling. A campaign exploring the boundary between technology and natural environments — shot in collaboration with DJI.',
+      'A video project for the launch of the DJI Air 3S — aerial precision meets cinematic storytelling, exploring the boundary between technology and natural environments.',
     images: [
       '/portfolio/dji/Sony-400-800-263.jpg',
       '/portfolio/dji/Sony-400-800-264.jpg',

@@ -49,7 +49,7 @@ const WORKS = [
   {
     idx: '06',
     slug: 'dji',
-    title: 'DJI × Sony',
+    title: 'DJI',
     meta: '2024 / Tech',
     image: '/portfolio/dji/Sony-400-800-263.jpg',
     span: 'wide',

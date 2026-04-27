@@ -27,14 +27,29 @@ export default function ProjectPage({ project, onBack }) {
         </span>
       </div>
 
-      {/* Hero image — always horizontal. Use project.hero if provided, else crop images[0]. */}
-      <div className={styles.hero}>
-        <img
-          className={styles.heroImg}
-          src={project.hero ?? project.images[0]}
-          alt={project.title}
-        />
-      </div>
+      {/* Hero — video embed if project.video exists, else hero/cover image */}
+      {project.video ? (
+        <div className={styles.videoWrap}>
+          <iframe
+            className={styles.videoFrame}
+            src={`${project.video}?autoplay=0&rel=0&modestbranding=1`}
+            title={project.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <div className={styles.hero}>
+          <img
+            className={styles.heroImg}
+            src={project.hero ?? project.images[0]}
+            alt={project.title}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </div>
+      )}
 
       {/* Header */}
       <div className={styles.header}>

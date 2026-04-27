@@ -44,6 +44,22 @@
 }
 .breadcrumb .sep { margin: 0 8px; color: var(--accent); }
 
+/* ---- Video embed (replaces hero image when project.video is set) ---- */
+.videoWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
 /* ---- Hero ---- horizontal crop on purpose. Only place in the site where we crop. */
 .hero {
   position: relative;
