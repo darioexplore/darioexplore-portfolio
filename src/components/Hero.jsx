@@ -66,7 +66,7 @@ export default function Hero() {
             destinations, and experiences.
           </p>
           <div className={`${styles.ctaRow} fade-up d5`}>
-            <a href="mailto:hello@darioexplore.com" className={styles.ctaBtn}>
+            <a href="#contact" className={styles.ctaBtn}>
               Start a Project
             </a>
           </div>
