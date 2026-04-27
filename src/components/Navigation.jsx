@@ -65,9 +65,9 @@ export default function Navigation() {
       {menuOpen && (
         <div className={styles.mobileMenu} role="dialog" aria-modal="true" aria-label="Navigation">
           <nav className={styles.mobileLinks}>
-            <a href="#work"     onClick={close}>Selected Work</a>
-            <a href="#services" onClick={close}>Services</a>
-            <a href="#about"    onClick={close}>About</a>
+            <a href="#work"     onClick={close}><span className={styles.linkNum}>01</span>Selected Work</a>
+            <a href="#services" onClick={close}><span className={styles.linkNum}>02</span>Services</a>
+            <a href="#about"    onClick={close}><span className={styles.linkNum}>03</span>About</a>
           </nav>
           <a href="#contact" onClick={close} className={styles.mobileCta}>
             Start a Project →
