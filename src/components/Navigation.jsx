@@ -31,6 +31,7 @@ export default function Navigation() {
           {/* Desktop nav */}
           <nav>
             <ul className={styles.links}>
+              <li><a href="#top">Home</a></li>
               <li><a href="#work">Selected Work</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#about">About</a></li>
@@ -65,6 +66,7 @@ export default function Navigation() {
       {menuOpen && (
         <div className={styles.mobileMenu} role="dialog" aria-modal="true" aria-label="Navigation">
           <nav className={styles.mobileLinks}>
+            <a href="#top"      onClick={close}><span className={styles.linkNum}>00</span>Home</a>
             <a href="#work"     onClick={close}><span className={styles.linkNum}>01</span>Selected Work</a>
             <a href="#services" onClick={close}><span className={styles.linkNum}>02</span>Services</a>
             <a href="#about"    onClick={close}><span className={styles.linkNum}>03</span>About</a>
