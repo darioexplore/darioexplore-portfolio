@@ -14,17 +14,14 @@ export default function LinksPage() {
 
   return (
     <div className={styles.page}>
-      <FilmGrain opacity={0.06} fps={24} />
+      <FilmGrain opacity={0.08} fps={24} />
 
       <div className={styles.container}>
-        <div className={styles.frame}>
-          <img src="/me.jpg" alt="Dario Viegas" className={styles.photo} />
+        <div className={styles.avatar}>
+          <img src="/me.jpg" alt="Dario Viegas" />
         </div>
 
-        <h1 className={styles.name}>
-          DARIO VIEGAS<span className={styles.dot}>.</span>
-        </h1>
-
+        <h1 className={styles.name}>DARIO VIEGAS<span className={styles.dot}>.</span></h1>
         <p className={styles.bio}>Filmmaker &amp; Photographer</p>
 
         <nav className={styles.links}>
@@ -36,8 +33,7 @@ export default function LinksPage() {
               rel="noopener noreferrer"
               className={styles.link}
             >
-              <span>{link.title}</span>
-              <span className={styles.arrow}>↗</span>
+              {link.title}
             </a>
           ))}
           {links.length === 0 && (
