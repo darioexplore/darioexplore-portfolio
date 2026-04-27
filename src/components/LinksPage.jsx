@@ -28,7 +28,7 @@ export default function LinksPage() {
           {links.map(link => (
             <a
               key={link.id}
-              href={link.url}
+              href={`/api/go/${link.id}`}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}

@@ -13,6 +13,9 @@ export default function AdminPage() {
   const [editingId, setEditingId] = useState(null)
   const [editTitle, setEditTitle] = useState('')
   const [editUrl, setEditUrl] = useState('')
+  const [stats, setStats] = useState([])
+  const [days, setDays] = useState(7)
+  const [statsLoading, setStatsLoading] = useState(false)
 
   const storedPw = sessionStorage.getItem(SESSION_KEY)
 
@@ -21,12 +24,22 @@ export default function AdminPage() {
     setTimeout(() => setMsg({ text: '', error: false }), 3000)
   }
 
-  const fetchLinks = useCallback(async (pw) => {
+  const fetchLinks = useCallback(async () => {
     try {
       const r = await fetch('/api/links')
       setLinks(await r.json())
     } catch {
       flash('Could not load links.', true)
+    }
+  }, [])
+
+  const fetchStats = useCallback(async (pw, d) => {
+    setStatsLoading(true)
+    try {
+      const r = await fetch(`/api/stats?password=${encodeURIComponent(pw)}&days=${d}`)
+      if (r.ok) setStats(await r.json())
+    } finally {
+      setStatsLoading(false)
     }
   }, [])
 
@@ -38,10 +51,10 @@ export default function AdminPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: storedPw }),
     }).then(r => {
-      if (r.ok) { setAuthed(true); fetchLinks() }
+      if (r.ok) { setAuthed(true); fetchLinks(); fetchStats(storedPw, 7) }
       else sessionStorage.removeItem(SESSION_KEY)
     })
-  }, [fetchLinks])
+  }, [fetchLinks, fetchStats])
 
   async function login(e) {
     e.preventDefault()
@@ -54,6 +67,7 @@ export default function AdminPage() {
     sessionStorage.setItem(SESSION_KEY, password)
     setAuthed(true)
     fetchLinks()
+    fetchStats(password, 7)
   }
 
   function logout() {
@@ -174,6 +188,33 @@ export default function AdminPage() {
             {msg.text && <span className={`${styles.msg} ${msg.error ? styles.err : ''}`}>{msg.text}</span>}
           </div>
         </form>
+
+        {/* Stats */}
+        <div className={styles.statsBlock}>
+          <div className={styles.statsHeader}>
+            <div className={styles.label} style={{margin:0}}>Click stats</div>
+            <div className={styles.dayBtns}>
+              {[7, 14, 30].map(d => (
+                <button
+                  key={d}
+                  className={`${styles.dayBtn} ${days === d ? styles.dayBtnActive : ''}`}
+                  onClick={() => {
+                    setDays(d)
+                    fetchStats(sessionStorage.getItem(SESSION_KEY), d)
+                  }}
+                >{d}d</button>
+              ))}
+            </div>
+          </div>
+          {statsLoading && <div className={styles.statsLoading}>Loading…</div>}
+          {!statsLoading && stats.length === 0 && <div className={styles.empty}>No data yet.</div>}
+          {!statsLoading && stats.map(s => (
+            <div key={s.id} className={styles.statRow}>
+              <span className={styles.statTitle}>{s.title}</span>
+              <span className={styles.statCount}>{s.clicks} click{s.clicks !== 1 ? 's' : ''}</span>
+            </div>
+          ))}
+        </div>
 
         {/* Link list */}
         <div className={styles.list}>

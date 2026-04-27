@@ -163,6 +163,87 @@
 
 .err { color: var(--accent); }
 
+/* ── Stats ── */
+.statsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.statsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.dayBtns {
+  display: flex;
+  gap: 4px;
+}
+
+.dayBtn {
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.dayBtn:hover {
+  border-color: var(--fg);
+  color: var(--fg);
+}
+
+.dayBtnActive {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+
+.statsLoading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 16px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.statRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.statRow:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.statTitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+.statCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 /* ── Link list ── */
 .list { display: flex; flex-direction: column; }
 
