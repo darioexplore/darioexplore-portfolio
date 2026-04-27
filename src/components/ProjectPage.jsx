@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import styles from './ProjectPage.module.css'
-import { imgSrc } from '../utils/imgOptimize'
 
 function scrollToContact() {
   setTimeout(() => {
@@ -32,7 +31,7 @@ export default function ProjectPage({ project, onBack }) {
       <div className={styles.hero}>
         <img
           className={styles.heroImg}
-          src={imgSrc(project.hero ?? project.images[0], 1920, 80)}
+          src={project.hero ?? project.images[0]}
           alt={project.title}
           loading="eager"
           fetchPriority="high"
@@ -93,7 +92,7 @@ export default function ProjectPage({ project, onBack }) {
             <div key={i} className={styles.galleryItem}>
               <img
                 className={styles.galleryImg}
-                src={imgSrc(src, 1200, 80)}
+                src={src}
                 alt={`${project.title} — ${i + 1}`}
                 loading={i < 3 ? 'eager' : 'lazy'}
                 decoding="async"
