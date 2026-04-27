@@ -182,9 +182,86 @@
   opacity: 0.5;
 }
 
+/* ---- Availability + CTA ---- */
+.statusBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Green ping dot */
+.pingDot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+}
+
+.pingDot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #3cb371;
+}
+
+.pingDot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #3cb371;
+  animation: pingPulse 2.2s ease-out infinite;
+}
+
+@keyframes pingPulse {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(3.2); opacity: 0;   }
+}
+
+/* Outlined CTA — inverts on hover, distinct from the filled link buttons */
+.ctaBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 24px;
+  border: 1px solid var(--fg);
+  background: transparent;
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ctaBtn:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
 /* ---- Footer ---- */
 .footer {
-  margin-top: 64px;
+  margin-top: 40px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.2em;
