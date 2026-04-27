@@ -67,7 +67,7 @@ export default function LinksPage() {
               rel="noopener noreferrer"
               className={styles.link}
             >
-              <LinkIcon url={link.url} className={styles.icon} />
+              <LinkIcon url={link.url} title={link.title} className={styles.icon} />
               {link.title}
             </a>
           ))}

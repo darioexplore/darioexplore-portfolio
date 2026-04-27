@@ -1,7 +1,15 @@
-/* Detects platform from URL and renders the matching brand SVG icon.
+/* Detects platform from title (first) then URL hostname.
    Accepts a `className` prop so the parent can apply animation styles. */
 
-function detect(url) {
+function detect(url, title = '') {
+  const t = title.toLowerCase()
+
+  // Title-based overrides — checked before URL so custom names always win
+  if (t.includes('lut') || t.includes('color grad') || t.includes('colour grad') || t.includes('preset'))
+    return 'luts'
+  if (t.includes('sfx') || t.includes('sound effect') || t.includes('audio pack') || t.includes('sound pack'))
+    return 'sfx'
+
   try {
     const h = new URL(url).hostname.replace('www.', '')
     if (h.includes('instagram'))          return 'instagram'
@@ -27,6 +35,21 @@ function detect(url) {
 
 /* ── SVG path definitions (viewBox 0 0 24 24) ── */
 const ICONS = {
+  // Color palette — used for LUTs / color grading links
+  luts: () => (
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 8 6.5 8 8 8.67 8 9.5 7.33 11 6.5 11zm3-4C8.67 7 8 6.33 8 5.5S8.67 4 9.5 4s1.5.67 1.5 1.5S10.33 7 9.5 7zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 4 14.5 4s1.5.67 1.5 1.5S15.33 7 14.5 7zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 8 17.5 8s1.5.67 1.5 1.5S18.33 11 17.5 11z"/>
+  ),
+  // Audio waveform — used for SFX / sound effect links
+  sfx: () => (
+    <>
+      <rect x="1"  y="10" width="2.5" height="4"  rx="1.25"/>
+      <rect x="5"  y="6"  width="2.5" height="12" rx="1.25"/>
+      <rect x="9"  y="3"  width="2.5" height="18" rx="1.25"/>
+      <rect x="13" y="6"  width="2.5" height="12" rx="1.25"/>
+      <rect x="17" y="9"  width="2.5" height="6"  rx="1.25"/>
+      <rect x="21" y="10" width="2.5" height="4"  rx="1.25"/>
+    </>
+  ),
   instagram: () => (
     <path fillRule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
   ),
@@ -68,8 +91,8 @@ const ICONS = {
   ),
 }
 
-export default function LinkIcon({ url, className }) {
-  const key = detect(url)
+export default function LinkIcon({ url, title, className }) {
+  const key = detect(url, title)
   const Icon = ICONS[key] ?? ICONS.globe
   return (
     <svg
