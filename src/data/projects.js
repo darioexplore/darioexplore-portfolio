@@ -108,13 +108,13 @@ export const PROJECTS = [
   },
   {
     slug: 'dji',
-    title: 'DJI × Sony',
+    title: 'DJI',
     subtitle: 'Tech Campaign',
     category: 'Tech / Brand',
     year: '2024',
     location: 'Portugal',
     description:
-      'Aerial precision meets cinematic storytelling. A campaign exploring the boundary between technology and natural environments — shot in collaboration with DJI and Sony.',
+      'Aerial precision meets cinematic storytelling. A campaign exploring the boundary between technology and natural environments — shot in collaboration with DJI.',
     images: [
       '/portfolio/dji/Sony-400-800-263.jpg',
       '/portfolio/dji/Sony-400-800-264.jpg',
