@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import FilmGrain from './components/FilmGrain'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
@@ -73,7 +74,7 @@ export default function App() {
   }, [route])
 
   // Standalone pages — no nav/footer
-  if (route.type === 'links') return <LinksPage />
+  if (route.type === 'links') return <><LinksPage /><Analytics /></>
   if (route.type === 'admin') return <AdminPage />
 
   if (route.type === 'project') {
@@ -94,6 +95,7 @@ export default function App() {
 
   return (
     <>
+      <Analytics />
       <FilmGrain />
       <Navigation />
       <main>
