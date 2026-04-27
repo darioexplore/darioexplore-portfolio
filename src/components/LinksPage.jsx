@@ -89,6 +89,17 @@ export default function LinksPage() {
           )}
         </nav>
 
+        {/* Availability status + contact CTA */}
+        <div className={styles.statusBlock}>
+          <div className={styles.availability}>
+            <span className={styles.pingDot} aria-hidden="true" />
+            Available for work
+          </div>
+          <a href="/#contact" className={styles.ctaBtn}>
+            Get in touch →
+          </a>
+        </div>
+
         <footer className={styles.footer}>© 2025 Dario Viegas</footer>
       </div>
     </div>
