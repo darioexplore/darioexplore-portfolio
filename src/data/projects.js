@@ -31,8 +31,9 @@ export const PROJECTS = [
     location: 'Udaipur, India',
     description:
       'Luxury hospitality distilled into light and architecture. A commissioned still and film series for Fairmont\'s Udaipur property, captured during golden hour over three days.',
-    hero: encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-66.jpg'),
+    hero: encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-18.jpg'),
     images: [
+      encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-18.jpg'),
       encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-15.jpg'),
       encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-20.jpg'),
       encodeURI('/portfolio/fairmont/Fairmont - Udaipur - stills-25.jpg'),
