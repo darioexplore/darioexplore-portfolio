@@ -5,12 +5,12 @@ export default async function handler(req, res) {
 
   if (!src || typeof src !== 'string') return res.status(400).end()
 
-  // Security: strip path traversal, only allow paths under /portfolio/
+  // Decode fully to get the clean path, strip traversal
   const safeSrc = decodeURIComponent(src).replace(/\.\./g, '')
   if (!safeSrc.startsWith('/portfolio/')) return res.status(403).end()
 
-  // Fetch the original image from the CDN (same deployment)
-  const origin = `https://www.darioexplore.com${safeSrc}`
+  // Re-encode so spaces and special chars are valid in the fetch URL
+  const origin = `https://www.darioexplore.com${encodeURI(safeSrc)}`
 
   try {
     const response = await fetch(origin)
