@@ -11,12 +11,14 @@ import Contact from './components/Contact'
 import ProjectPage from './components/ProjectPage'
 import LinksPage from './components/LinksPage'
 import AdminPage from './components/AdminPage'
+import MediaKit from './components/MediaKit'
 import { getProject } from './data/projects'
 
 function getRoute() {
   const path = window.location.pathname.replace(/\/$/, '') || '/'
   if (path === '/links') return { type: 'links' }
   if (path === '/links/admin') return { type: 'admin' }
+  if (path === '/media-kit') return { type: 'mediakit' }
 
   const hash = window.location.hash.replace('#', '')
   if (hash.startsWith('project/')) {
@@ -76,6 +78,7 @@ export default function App() {
   // Standalone pages — no nav/footer
   if (route.type === 'links') return <><LinksPage /><Analytics /></>
   if (route.type === 'admin') return <AdminPage />
+  if (route.type === 'mediakit') return <><MediaKit /><Analytics /></>
 
   if (route.type === 'project') {
     const project = getProject(route.slug)
