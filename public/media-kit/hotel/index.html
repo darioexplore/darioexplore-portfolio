@@ -1063,6 +1063,12 @@
       overflow:auto;
     }
 
+    html.mobile-mode,
+    body.mobile-mode{
+      overflow-y:auto;
+      height:auto;
+    }
+
     body.mobile-mode #viewport{
       width:100%;
       height:auto;
@@ -1698,6 +1704,7 @@
         const vw = window.innerWidth;
         const vh = window.innerHeight;
         const usePortrait = vw / vh < 0.92;
+        document.documentElement.classList.toggle('mobile-mode', usePortrait);
         document.body.classList.toggle('mobile-mode', usePortrait);
 
         if (usePortrait) {

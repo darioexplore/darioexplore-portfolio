@@ -592,6 +592,44 @@
       padding:0 14px;
       font-size:10px;
     }
+
+    html.mobile-mode,
+    body.mobile-mode{
+      overflow-y:auto;
+      height:auto;
+    }
+
+    body.mobile-mode #viewport{
+      width:100%;
+      height:auto;
+      min-height:100svh;
+      overflow:visible;
+    }
+
+    body.mobile-mode #artboard{
+      position:relative;
+      left:auto;
+      top:auto;
+      width:100% !important;
+      height:auto !important;
+      transform:none !important;
+      border:0;
+      overflow:visible;
+    }
+
+    body.mobile-mode .canvas{
+      height:auto;
+      padding:20px 16px;
+    }
+
+    body.mobile-mode .main-grid{
+      grid-template-rows:auto !important;
+    }
+
+    body.mobile-mode .card{
+      overflow:visible;
+      min-height:0;
+    }
   </style>
 </head>
 <body>
@@ -763,15 +801,21 @@
         const vh = window.innerHeight;
         const usePortrait = vw / vh < 0.92;
 
-        const baseW = usePortrait ? 900 : 1600;
-        const baseH = usePortrait ? 1500 : 900;
-
+        document.documentElement.classList.toggle('mobile-mode', usePortrait);
+        document.body.classList.toggle('mobile-mode', usePortrait);
         artboard.classList.toggle('portrait', usePortrait);
         artboard.classList.toggle('landscape', !usePortrait);
-        artboard.style.width = baseW + 'px';
-        artboard.style.height = baseH + 'px';
 
-        const scale = Math.min(vw / baseW, vh / baseH);
+        if (usePortrait) {
+          artboard.style.width = '';
+          artboard.style.height = '';
+          artboard.style.transform = '';
+          return;
+        }
+
+        artboard.style.width = '1600px';
+        artboard.style.height = '900px';
+        const scale = Math.min(vw / 1600, vh / 900);
         artboard.style.transform = `translate(-50%, -50%) scale(${scale})`;
       }
 
