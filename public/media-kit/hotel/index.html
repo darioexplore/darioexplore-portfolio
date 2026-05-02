@@ -995,8 +995,11 @@
       grid-template-rows:1fr 220px;
     }
 
-    .portrait .info-zone{
+    .portrait .info-zone-wrap{
       order:1;
+    }
+
+    .portrait .info-zone{
       grid-template-columns:1fr 1fr;
       grid-auto-rows:max-content;
     }
@@ -1115,11 +1118,16 @@
       overflow:visible;
     }
 
-    body.mobile-mode .info-zone{
+    body.mobile-mode .info-zone-wrap{
       order:1;
+      overflow:visible;
+    }
+
+    body.mobile-mode .info-zone{
       display:flex;
       flex-direction:column;
       gap:14px;
+      height:auto;
       max-height:none;
       overflow:visible;
       padding-right:0;
