@@ -758,9 +758,6 @@
   <script>
     (function () {
       const artboard = document.getElementById('artboard');
-      const copyBtn = document.getElementById('copyEmail');
-      const toast = document.getElementById('toast');
-
       function fitArtboard() {
         const vw = window.innerWidth;
         const vh = window.innerHeight;
@@ -778,18 +775,6 @@
         artboard.style.transform = `translate(-50%, -50%) scale(${scale})`;
       }
 
-      async function copyEmail() {
-        try {
-          await navigator.clipboard.writeText('hello@darioexplore.com');
-          toast.classList.add('show');
-          clearTimeout(window.__toastTimer);
-          window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 1400);
-        } catch (e) {
-          window.location.href = 'mailto:hello@darioexplore.com';
-        }
-      }
-
-      copyBtn.addEventListener('click', copyEmail);
       window.addEventListener('resize', fitArtboard);
       fitArtboard();
     })();
