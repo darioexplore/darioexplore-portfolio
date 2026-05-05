@@ -96,29 +96,41 @@ export default function Contact() {
 
 
         {status === 'success' ? (
-          <div className={styles.successMsg}>
+          <div className={styles.successMsg} role="status">
             Message sent — I'll be in touch soon.
           </div>
         ) : (
           <form className={`${styles.form} reveal`} onSubmit={handleSubmit} noValidate>
-            <input
-              className={styles.field}
-              type="text"
-              placeholder="Name"
-              value={form.name}
-              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-              required
-            />
-            <input
-              className={styles.field}
-              type="email"
-              placeholder="Email"
-              value={form.email}
-              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-              required
-            />
+            <div className={styles.fieldGroup}>
+              <label htmlFor="contact-name" className={styles.srOnly}>Name</label>
+              <input
+                id="contact-name"
+                className={styles.field}
+                type="text"
+                placeholder="Name"
+                value={form.name}
+                onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                required
+                autoComplete="name"
+              />
+            </div>
+            <div className={styles.fieldGroup}>
+              <label htmlFor="contact-email" className={styles.srOnly}>Email</label>
+              <input
+                id="contact-email"
+                className={styles.field}
+                type="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                required
+                autoComplete="email"
+              />
+            </div>
             <div className={styles.selectWrap}>
+              <label htmlFor="contact-company" className={styles.srOnly}>Company type</label>
               <select
+                id="contact-company"
                 className={`${styles.field} ${styles.select} ${!form.company ? styles.selectEmpty : ''}`}
                 value={form.company}
                 onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
@@ -135,16 +147,20 @@ export default function Contact() {
               </select>
               <span className={styles.selectArrow} aria-hidden="true">↓</span>
             </div>
-            <textarea
-              className={`${styles.field} ${styles.textarea}`}
-              placeholder="Message"
-              rows={5}
-              value={form.message}
-              onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-              required
-            />
+            <div className={styles.fieldGroup}>
+              <label htmlFor="contact-message" className={styles.srOnly}>Message</label>
+              <textarea
+                id="contact-message"
+                className={`${styles.field} ${styles.textarea}`}
+                placeholder="Message"
+                rows={5}
+                value={form.message}
+                onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                required
+              />
+            </div>
             {status === 'error' && (
-              <p className={styles.errorMsg}>Something went wrong — try emailing directly.</p>
+              <p className={styles.errorMsg} role="alert">Something went wrong — try emailing directly.</p>
             )}
             <button type="submit" className={styles.cta} disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending…' : 'Send Message'}

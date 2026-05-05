@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 const LOGOS = [
@@ -33,10 +34,24 @@ function Ticker() {
 }
 
 export default function Hero() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = () => {
+      if (mq.matches) videoRef.current?.pause()
+      else videoRef.current?.play().catch(() => {})
+    }
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
   return (
     <>
       <section id="top" className={styles.hero}>
         <video
+          ref={videoRef}
           className={styles.video}
           autoPlay
           muted

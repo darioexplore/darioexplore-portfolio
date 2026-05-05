@@ -86,9 +86,24 @@ export default function Services() {
         </div>
 
         <div className={styles.grid}>
-          {SERVICES.map((s) => (
-            <div key={s.idx} className={`${styles.cell} reveal`}>
+          {/* Service 01 — full-width featured row */}
+          <div className={`${styles.cell} ${styles.cellFeatured} reveal`}>
+            <div className={styles.featuredLeft}>
+              <div className={styles.cellIndex}>{SERVICES[0].idx} / Service</div>
+              <div className={styles.featuredIconWrap}>{SERVICES[0].icon}</div>
+              <h3 className={styles.cellTitleLarge}>{SERVICES[0].title}</h3>
+            </div>
+            <div className={styles.featuredRight}>
+              <p className={styles.cellBodyLarge}>{SERVICES[0].body}</p>
+              <a href="#contact" className={styles.featuredCta}>Start a Film Project</a>
+            </div>
+          </div>
+
+          {/* Services 02–04 — three equal columns */}
+          {SERVICES.slice(1).map((s) => (
+            <div key={s.idx} className={`${styles.cell} ${styles.cellCompact} reveal`}>
               <div className={styles.cellIndex}>{s.idx} / Service</div>
+              <div>{s.icon}</div>
               <h3 className={styles.cellTitle}>{s.title}</h3>
               <p className={styles.cellBody}>{s.body}</p>
             </div>
