@@ -34,6 +34,7 @@
       --bg:#FDFDFD;
       --text:#0E0C0B;
       --accent:#C0392B;
+      --accent-faint:rgba(192,57,43,.18);
       --muted:#706D69;
       --line:#E6E4E3;
       --line-strong:#DEDAD7;
@@ -81,7 +82,7 @@
       transform:translate(-50%,-50%) scale(1);
       transform-origin:center center;
       background:var(--bg);
-      border:1px solid rgba(14,12,11,0.10);
+      border:1px solid var(--line);
       border-radius:0;
       box-shadow:var(--shadow);
       overflow:hidden;
@@ -192,7 +193,7 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:42px;
+      min-height:44px;
       padding:0 22px;
       border-radius:0;
       border:1px solid var(--line);
@@ -495,35 +496,12 @@
       transform:translateY(-1px);
     }
 
-    .logo:hover::before{border-color:rgba(192,57,43,.22)}
+    .logo:hover::before{border-color:var(--accent-faint)}
 
-    .logo.michroma{font-family:"Druk Wide", "Arial Black", sans-serif;font-size:15px;letter-spacing:.08em}
-    .logo.wide{font-size:15px;letter-spacing:.22em}
-    .logo.small{font-size:12px;letter-spacing:.16em}
-    .logo.mini{font-size:11px;letter-spacing:.14em}
-    .logo.bold{font-weight:700}
-    .logo.soft{color:#3f3b37}
 
-    .toast{
-      position:absolute;
-      right:24px;
-      bottom:22px;
-      padding:10px 14px;
-      border-radius:0;
-      background:var(--text);
-      color:var(--hero-text);
-      font-size:10px;
-      letter-spacing:.2em;
-      opacity:0;
-      transform:translateY(8px);
-      transition:.22s cubic-bezier(.19,1,.22,1);
-      pointer-events:none;
-      z-index:3;
-    }
-
-    .toast.show{
-      opacity:1;
-      transform:translateY(0);
+    :focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
     }
 
     .portrait .canvas{padding:28px}
@@ -567,9 +545,12 @@
       padding:12px 0;
     }
     .portrait .logo-grid{
-      grid-template-columns:repeat(4,1fr);
-      grid-template-rows:repeat(3, minmax(0, 1fr));
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:repeat(4, minmax(0, 1fr));
       gap:8px;
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{ transition:none !important; animation:none !important; }
     }
     .portrait .logo img{
       max-height:38px;
@@ -705,7 +686,7 @@
                     </svg>
                   </span>
                   <div class="value">8.5K+</div>
-                  <div class="label">Youtube Subscribers</div>
+                  <div class="label">YouTube Subscribers</div>
                 </div>
                 <div class="stat">
                   <div class="value">15K</div>
@@ -770,25 +751,22 @@
             </div>
 
               <div class="logo-grid">
-              <div class="logo"><img src="logos/ponant-vector-logo-2.png" alt="Ponant" /></div>
-              <div class="logo"><img src="logos/a77da30e6dcce4bc45ec52c3be509443.png" alt="Client logo" /></div>
-              <div class="logo"><img src="logos/logo7.jpg" alt="Client logo" /></div>
-              <div class="logo"><img src="logos/Samsonite_id8Lnz9qyU_0.png" alt="Samsonite" /></div>
-              <div class="logo"><img src="logos/DJI_id5sH6ECbd_1.png" alt="DJI" /></div>
-
-              <div class="logo"><img src="logos/idedh8cUxR_logos.png" alt="Client logo" /></div>
-              <div class="logo"><img src="logos/OPPO_ideybZNjGZ_1.png" alt="OPPO" /></div>
-              <div class="logo"><img src="logos/Celebrity_Cruises_idcWrfMjLQ_1.png" alt="Celebrity Cruises" /></div>
-              <div class="logo"><img src="logos/Xiaomi_Logo_1.png" alt="Xiaomi" /></div>
-              <div class="logo"><img src="logos/Vectorexperiance-abudhabi-dark.svg" alt="Experience Abu Dhabi" /></div>
-
-              <div class="logo"><img src="logos/Hyatt_idaaVkqqMk_1.png" alt="Hyatt" /></div>
+              <div class="logo"><img src="logos/ponant-vector-logo-2.png" alt="Ponant" loading="lazy" /></div>
+              <div class="logo"><img src="logos/a77da30e6dcce4bc45ec52c3be509443.png" alt="Abu Dhabi Tourism" loading="lazy" /></div>
+              <div class="logo"><img src="logos/logo7.jpg" alt="Visit Algarve Portugal" loading="lazy" /></div>
+              <div class="logo"><img src="logos/Samsonite_id8Lnz9qyU_0.png" alt="Samsonite" loading="lazy" /></div>
+              <div class="logo"><img src="logos/DJI_id5sH6ECbd_1.png" alt="DJI" loading="lazy" /></div>
+              <div class="logo"><img src="logos/idedh8cUxR_logos.png" alt="Madeira" loading="lazy" /></div>
+              <div class="logo"><img src="logos/OPPO_ideybZNjGZ_1.png" alt="OPPO" loading="lazy" /></div>
+              <div class="logo"><img src="logos/Celebrity_Cruises_idcWrfMjLQ_1.png" alt="Celebrity Cruises" loading="lazy" /></div>
+              <div class="logo"><img src="logos/Xiaomi_Logo_1.png" alt="Xiaomi" loading="lazy" /></div>
+              <div class="logo"><img src="logos/Vectorexperiance-abudhabi-dark.svg" alt="Experience Abu Dhabi" loading="lazy" /></div>
+              <div class="logo"><img src="logos/Hyatt_idaaVkqqMk_1.png" alt="Hyatt" loading="lazy" /></div>
             </div>
           </section>
         </main>
       </div>
 
-      <div class="toast" id="toast">Email Copied</div>
     </div>
   </div>
 
@@ -818,7 +796,8 @@
         artboard.style.transform = `translate(-50%, -50%) scale(${scale})`;
       }
 
-      window.addEventListener('resize', fitArtboard);
+      let raf;
+      window.addEventListener('resize', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fitArtboard); });
       fitArtboard();
     })();
   </script>
