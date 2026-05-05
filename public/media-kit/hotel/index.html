@@ -318,7 +318,7 @@
     }
 
     .media-zone{
-      grid-template-rows:1fr 214px;
+      grid-template-rows:1fr 264px;
     }
 
     .info-zone{
@@ -571,9 +571,56 @@
 
     .video-strip{
       display:grid;
+      grid-template-rows:1fr auto;
+      gap:12px;
+    }
+
+    .video-top{
+      display:grid;
       grid-template-columns:1fr 1fr;
       gap:0;
+      min-height:0;
     }
+
+    .hotel-logos{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding-top:10px;
+      border-top:1px solid var(--line);
+    }
+
+    .hotel-logo-item{
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:30px;
+      overflow:hidden;
+    }
+
+    .hotel-logo-item img{
+      height:28px;
+      width:auto;
+      max-width:100%;
+      object-fit:contain;
+      opacity:0.85;
+      filter:grayscale(1) contrast(2);
+      mix-blend-mode:multiply;
+      transition:opacity .22s cubic-bezier(.19,1,.22,1);
+    }
+
+    .hotel-logo-item img:hover{
+      opacity:0.55;
+    }
+
+    /* optical size balancing per logo */
+    .hotel-logo-item:nth-child(1) img{ height:30px; } /* Fairmont — script */
+    .hotel-logo-item:nth-child(2) img{ height:20px; } /* Hyatt — bold wide */
+    .hotel-logo-item:nth-child(3) img{ height:52px; } /* Ponant */
+    .hotel-logo-item:nth-child(4) img{ height:22px; } /* Celebrity Cruises */
+    .hotel-logo-item:nth-child(5) img{ height:120px; } /* Villa Resorts — square with padding */
+    .hotel-logo-item:nth-child(6) img{ height:42px; } /* Anantara */
 
     .video-half{
       min-width:0;
@@ -1263,6 +1310,12 @@
     }
 
     body.mobile-mode .video-strip{
+      display:grid;
+      grid-template-rows:auto auto;
+      gap:18px;
+    }
+
+    body.mobile-mode .video-top{
       display:flex;
       flex-direction:column;
       gap:18px;
@@ -1342,7 +1395,7 @@
 
       .media-zone{
         order:initial;
-        grid-template-rows:1fr 168px;
+        grid-template-rows:1fr 210px;
         gap:10px;
       }
 
@@ -1456,7 +1509,7 @@
         font-size:21px;
       }
 
-      .video-strip{
+      .video-top{
         grid-template-columns:1fr 1fr;
       }
 
@@ -1519,39 +1572,62 @@
             </section>
 
             <section class="panel video-strip">
-              <div class="video-half">
-                <div class="gallery-head">
-                  <div>
-                    <span class="marker">06 — Video Links</span>
-                    <h2 class="gallery-title">Hotel Reels</h2>
+              <div class="video-top">
+                <div class="video-half">
+                  <div class="gallery-head">
+                    <div>
+                      <span class="marker">06 — Video Links</span>
+                      <h2 class="gallery-title">Hotel Reels</h2>
+                    </div>
+                    <div class="gallery-note">Click A Video</div>
                   </div>
-                  <div class="gallery-note">Click A Video</div>
+
+                  <div class="video-grid">
+                    <button class="video-card" data-video-index="0">
+                      <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="metadata"></video>
+                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                      <span class="video-meta"><span class="video-name">Fairmont</span></span>
+                    </button>
+                    <button class="video-card" data-video-index="1">
+                      <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="metadata"></video>
+                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                      <span class="video-meta"><span class="video-name">Fairmont</span></span>
+                    </button>
+                    <button class="video-card" data-video-index="2">
+                      <video src="videos/thecliff.mp4" muted playsinline preload="metadata"></video>
+                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                      <span class="video-meta"><span class="video-name">The Cliff</span></span>
+                    </button>
+                  </div>
                 </div>
 
-                <div class="video-grid">
-                  <button class="video-card" data-video-index="0">
-                    <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="metadata"></video>
-                    <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                    <span class="video-meta"><span class="video-name">A Day In Fairmont Udaipur</span></span>
-                  </button>
-                  <button class="video-card" data-video-index="1">
-                    <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="metadata"></video>
-                    <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                    <span class="video-meta"><span class="video-name">Exploring Udaipur</span></span>
-                  </button>
-                  <button class="video-card" data-video-index="2">
-                    <video src="videos/thecliff.mp4" muted playsinline preload="metadata"></video>
-                    <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                    <span class="video-meta"><span class="video-name">The Cliff</span></span>
-                  </button>
+                <div class="video-half">
+                  <div class="video-links">
+                    <span class="marker">07 — Instagram Reels</span>
+                    <a class="video-link" href="https://www.instagram.com/reels/DRhvttHDa1W/" target="_blank" rel="noopener"><span>Reel 01</span><span>↗</span></a>
+                    <a class="video-link" href="https://www.instagram.com/reels/CzLRthuPBgD/" target="_blank" rel="noopener"><span>Reel 02</span><span>↗</span></a>
+                  </div>
                 </div>
               </div>
 
-              <div class="video-half">
-                <div class="video-links">
-                  <span class="marker">07 — Instagram Reels</span>
-                  <a class="video-link" href="https://www.instagram.com/reels/DRhvttHDa1W/" target="_blank" rel="noopener"><span>Reel 01</span><span>↗</span></a>
-                  <a class="video-link" href="https://www.instagram.com/reels/CzLRthuPBgD/" target="_blank" rel="noopener"><span>Reel 02</span><span>↗</span></a>
+              <div class="hotel-logos" aria-label="Featured hotels and partners">
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/fairmont-seeklogo.png" alt="Fairmont" loading="lazy" />
+                </div>
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/Hyatt_idaaVkqqMk_1.png" alt="Hyatt" loading="lazy" />
+                </div>
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/ponant-vector-logo-2.png" alt="Ponant" loading="lazy" />
+                </div>
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/Celebrity_Cruises_idcWrfMjLQ_1.png" alt="Celebrity Cruises" loading="lazy" />
+                </div>
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/Villa-Resorts-Logo-Black.png" alt="Villa Resorts" loading="lazy" />
+                </div>
+                <div class="hotel-logo-item">
+                  <img src="hotellogos/pngegg-4.png" alt="Partner" loading="lazy" />
                 </div>
               </div>
             </section>
@@ -1699,8 +1775,8 @@
       const closeBtn = modal.querySelector('.modal-close');
 
       const videos = [
-        { title: 'A Day In Fairmont Udaipur', src: 'videos/Reel 3 - A day in Fairmont Udaipur.mp4' },
-        { title: 'Exploring Udaipur', src: 'videos/Reel 2 - Exploring Udaipur - Sugested.mp4' },
+        { title: 'Fairmont', src: 'videos/Reel 3 - A day in Fairmont Udaipur.mp4' },
+        { title: 'Fairmont', src: 'videos/Reel 2 - Exploring Udaipur - Sugested.mp4' },
         { title: 'The Cliff', src: 'videos/thecliff.mp4' }
       ];
 
