@@ -821,7 +821,22 @@
     }
 
     .video-card video{
-      display:none;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      filter:saturate(.78) contrast(1.06) brightness(.88);
+      transition:transform 0.65s cubic-bezier(0.22,1,0.36,1), filter 0.5s cubic-bezier(0.22,1,0.36,1);
+      will-change:transform;
+      pointer-events:none;
+      display:block;
+    }
+
+    .video-card:hover video{
+      transform:scale(1.055);
+      filter:saturate(1.05) contrast(1) brightness(1);
     }
 
     .video-card:hover{
@@ -1699,20 +1714,17 @@
 
               <div class="reels-all">
                 <button class="video-card" data-video-index="0">
-                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-4.jpg" alt="" />
-                  <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="metadata"></video>
+                  <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="auto"></video>
                   <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
                   <span class="video-meta"><span class="video-name">Fairmont</span></span>
                 </button>
                 <button class="video-card" data-video-index="1">
-                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-3.jpg" alt="" />
-                  <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="metadata"></video>
+                  <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="auto"></video>
                   <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
                   <span class="video-meta"><span class="video-name">Fairmont</span></span>
                 </button>
                 <button class="video-card" data-video-index="2">
-                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-14.jpg" alt="" />
-                  <video src="videos/thecliff.mp4" muted playsinline preload="metadata"></video>
+                  <video src="videos/thecliff.mp4" muted playsinline preload="auto"></video>
                   <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
                   <span class="video-meta"><span class="video-name">The Cliff</span></span>
                 </button>
@@ -1953,6 +1965,13 @@
         modal.classList.add('video-mode');
         video.play().catch(() => {});
       }
+
+      // Seek thumbnail videos to a meaningful frame
+      document.querySelectorAll('.video-card video').forEach((vid) => {
+        vid.addEventListener('loadedmetadata', () => {
+          vid.currentTime = Math.min(2, vid.duration * 0.05);
+        });
+      });
 
       document.querySelectorAll('.photo-tile').forEach((button) => {
         button.addEventListener('click', () => openPhoto(button.dataset.photo, button.dataset.title));
