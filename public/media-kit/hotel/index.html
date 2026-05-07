@@ -587,14 +587,24 @@
 
     .video-strip{
       display:grid;
-      grid-template-rows:1fr auto;
-      gap:12px;
+      grid-template-rows:auto 1fr auto;
+      gap:10px;
     }
 
-    .video-top{
+    .reels-header{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:0;
+      grid-template-columns:3fr 2fr;
+    }
+
+    .reels-header .marker:last-child{
+      border-left:1px solid var(--line);
+      padding-left:14px;
+    }
+
+    .reels-all{
+      display:grid;
+      grid-template-columns:repeat(5, minmax(0,1fr));
+      gap:10px;
       min-height:0;
     }
 
@@ -613,6 +623,127 @@
       justify-content:center;
       height:30px;
       overflow:hidden;
+    }
+
+    .ig-reels-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      min-height:0;
+    }
+
+    .ig-reel-card{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      text-decoration:none;
+      color:inherit;
+      min-height:0;
+    }
+
+    .ig-reel-cover{
+      flex:1;
+      min-height:0;
+      position:relative;
+      overflow:hidden;
+      background:var(--line-strong);
+    }
+
+    .ig-reel-cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(.8) contrast(1.05) brightness(.9);
+      transition:transform 0.65s cubic-bezier(0.22,1,0.36,1), filter 0.5s cubic-bezier(0.22,1,0.36,1);
+      will-change:transform;
+    }
+
+    .ig-reel-card:hover .ig-reel-cover img{
+      transform:scale(1.055);
+      filter:saturate(1.05) contrast(1) brightness(1);
+    }
+
+    .ig-reel-cover::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(14,12,11,0.28);
+      opacity:1;
+      transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1);
+      pointer-events:none;
+    }
+
+    .ig-reel-card:hover .ig-reel-cover::after{
+      opacity:0;
+    }
+
+    .ig-reel-play{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .ig-reel-play svg{
+      width:26px;
+      height:26px;
+      color:rgba(253,253,253,0.92);
+      filter:drop-shadow(0 1px 5px rgba(0,0,0,0.5));
+    }
+
+    .ig-reel-label{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:9px;
+      letter-spacing:.2em;
+      color:var(--muted);
+      padding:0 2px;
+    }
+
+    .video-poster{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
+      filter:saturate(.78) contrast(1.06) brightness(.88);
+      transition:transform 0.65s cubic-bezier(0.22,1,0.36,1), filter 0.5s cubic-bezier(0.22,1,0.36,1);
+      will-change:transform;
+      pointer-events:none;
+    }
+
+    .video-card:hover .video-poster{
+      transform:scale(1.055);
+      filter:saturate(1.05) contrast(1) brightness(1);
+    }
+
+    .video-card::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(14,12,11,0.28);
+      z-index:1;
+      transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1);
+      pointer-events:none;
+    }
+
+    .video-card:hover::after{
+      opacity:0;
+    }
+
+    .play-mark{
+      position:relative;
+      z-index:2;
+    }
+
+    .video-meta{
+      position:relative;
+      z-index:2;
     }
 
     .hotel-logo-item img{
@@ -638,24 +769,8 @@
     .hotel-logo-item:nth-child(5) img{ height:120px; } /* Villa Resorts — square with padding */
     .hotel-logo-item:nth-child(6) img{ height:42px; } /* Anantara */
 
-    .video-half{
-      min-width:0;
-      display:grid;
-      grid-template-rows:auto 1fr;
-      gap:12px;
-    }
-
-    .video-half + .video-half{
-      border-left:1px solid var(--line);
-      padding-left:20px;
-      margin-left:20px;
-    }
-
-    .video-grid{
-      min-height:0;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:12px;
+    .ig-reel-card.video-card{
+      text-decoration:none;
     }
 
     .video-card{
@@ -1327,26 +1442,16 @@
 
     body.mobile-mode .video-strip{
       display:grid;
-      grid-template-rows:auto auto;
-      gap:18px;
+      grid-template-rows:auto auto auto;
+      gap:14px;
     }
 
-    body.mobile-mode .video-top{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
+    body.mobile-mode .reels-header{
+      grid-template-columns:1fr 1fr;
     }
 
-    body.mobile-mode .video-half + .video-half{
-      margin-left:0;
-      padding-left:0;
-      padding-top:18px;
-      border-left:0;
-      border-top:1px solid var(--line);
-    }
-
-    body.mobile-mode .video-grid{
-      grid-template-columns:1fr;
+    body.mobile-mode .reels-all{
+      grid-template-columns:repeat(3,minmax(0,1fr));
       gap:8px;
     }
 
@@ -1525,16 +1630,7 @@
         font-size:21px;
       }
 
-      .video-top{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .video-half + .video-half{
-        margin-left:12px;
-        padding-left:12px;
-      }
-
-      .video-grid{
+      .reels-all{
         gap:8px;
       }
 
@@ -1596,42 +1692,40 @@
             </section>
 
             <section class="panel video-strip">
-              <div class="video-top">
-                <div class="video-half">
-                  <div class="gallery-head">
-                    <div>
-                      <span class="marker">06 — Video Links</span>
-                      <h2 class="gallery-title">Hotel Reels</h2>
-                    </div>
-                    <div class="gallery-note">Click A Video</div>
-                  </div>
+              <div class="reels-header">
+                <span class="marker">06 — Hotel Reels</span>
+                <span class="marker">07 — Instagram Reels</span>
+              </div>
 
-                  <div class="video-grid">
-                    <button class="video-card" data-video-index="0">
-                      <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="metadata"></video>
-                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                      <span class="video-meta"><span class="video-name">Fairmont</span></span>
-                    </button>
-                    <button class="video-card" data-video-index="1">
-                      <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="metadata"></video>
-                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                      <span class="video-meta"><span class="video-name">Fairmont</span></span>
-                    </button>
-                    <button class="video-card" data-video-index="2">
-                      <video src="videos/thecliff.mp4" muted playsinline preload="metadata"></video>
-                      <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
-                      <span class="video-meta"><span class="video-name">The Cliff</span></span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="video-half">
-                  <div class="video-links">
-                    <span class="marker">07 — Instagram Reels</span>
-                    <a class="video-link" href="https://www.instagram.com/reels/DRhvttHDa1W/" target="_blank" rel="noopener"><span>Reel 01</span><span>↗</span></a>
-                    <a class="video-link" href="https://www.instagram.com/reels/CzLRthuPBgD/" target="_blank" rel="noopener"><span>Reel 02</span><span>↗</span></a>
-                  </div>
-                </div>
+              <div class="reels-all">
+                <button class="video-card" data-video-index="0">
+                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-4.jpg" alt="" />
+                  <video src="videos/Reel 3 - A day in Fairmont Udaipur.mp4" muted playsinline preload="metadata"></video>
+                  <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                  <span class="video-meta"><span class="video-name">Fairmont</span></span>
+                </button>
+                <button class="video-card" data-video-index="1">
+                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-3.jpg" alt="" />
+                  <video src="videos/Reel 2 - Exploring Udaipur - Sugested.mp4" muted playsinline preload="metadata"></video>
+                  <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                  <span class="video-meta"><span class="video-name">Fairmont</span></span>
+                </button>
+                <button class="video-card" data-video-index="2">
+                  <img class="video-poster" src="Photos/Screenshot 2026-04-12 at 11.06.59.png" alt="" />
+                  <video src="videos/thecliff.mp4" muted playsinline preload="metadata"></video>
+                  <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                  <span class="video-meta"><span class="video-name">The Cliff</span></span>
+                </button>
+                <a class="video-card ig-reel-card" href="https://www.instagram.com/reels/DRhvttHDa1W/" target="_blank" rel="noopener">
+                  <img class="video-poster" src="Photos/Fairmont_Udaipur_Palace-2.jpg" alt="" />
+                  <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                  <span class="video-meta"><span class="video-name">Reel 01 ↗</span></span>
+                </a>
+                <a class="video-card ig-reel-card" href="https://www.instagram.com/reels/CzLRthuPBgD/" target="_blank" rel="noopener">
+                  <img class="video-poster" src="Photos/Screenshot 2026-04-12 at 11.06.32.png" alt="" />
+                  <span class="play-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                  <span class="video-meta"><span class="video-name">Reel 02 ↗</span></span>
+                </a>
               </div>
 
               <div class="hotel-logos" aria-label="Featured hotels and partners">

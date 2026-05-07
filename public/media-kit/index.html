@@ -501,6 +501,91 @@
     .logo:hover::before{border-color:var(--accent-faint)}
 
 
+    .reels-card{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .reels-grid{
+      flex:1;
+      min-height:0;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:10px;
+    }
+
+    .reel-item{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-height:0;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .reel-cover{
+      flex:1;
+      min-height:0;
+      position:relative;
+      overflow:hidden;
+      background:var(--line);
+    }
+
+    .reel-cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(.82) contrast(1.05) brightness(.92);
+      transition:transform 0.65s cubic-bezier(0.22,1,0.36,1), filter 0.5s cubic-bezier(0.22,1,0.36,1);
+      will-change:transform;
+    }
+
+    .reel-item:hover .reel-cover img{
+      transform:scale(1.055);
+      filter:saturate(1.05) contrast(1) brightness(1);
+    }
+
+    .reel-cover::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(14,12,11,0.28);
+      opacity:1;
+      transition:opacity 0.65s cubic-bezier(0.22,1,0.36,1);
+      pointer-events:none;
+    }
+
+    .reel-item:hover .reel-cover::after{
+      opacity:0;
+    }
+
+    .reel-play{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .reel-play svg{
+      width:28px;
+      height:28px;
+      color:rgba(253,253,253,0.9);
+      filter:drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+    }
+
+    .reel-label{
+      font-size:9px;
+      letter-spacing:.2em;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
     :focus-visible{
       outline:2px solid var(--accent);
       outline-offset:2px;
@@ -722,25 +807,37 @@
             </div>
           </section>
 
-          <section class="card">
-            <span class="marker">04 — Audience Demographic</span>
-            <div class="demo-list">
-              <div class="demo-item">
-                <div class="demo-label">Gender</div>
-                <div class="demo-value">Predominantly Male — 60%</div>
-              </div>
-              <div class="demo-item">
-                <div class="demo-label">Age</div>
-                <div class="demo-value">Core Audience Aged 25–44</div>
-              </div>
-              <div class="demo-item">
-                <div class="demo-label">Markets</div>
-                <div class="demo-value">United States, Europe, And Asia</div>
-              </div>
-              <div class="demo-item">
-                <div class="demo-label">Interests</div>
-                <div class="demo-value">Travel, Photography, Filmmaking, And Lifestyle</div>
-              </div>
+          <section class="card reels-card">
+            <span class="marker">04 — Instagram Reels</span>
+            <div class="reels-grid">
+              <a class="reel-item" href="https://www.instagram.com/reel/DRhvttHDa1W/" target="_blank" rel="noopener">
+                <div class="reel-cover">
+                  <img src="../portfolio/ponant/n%C2%B004_BO070724_Glacier-Ilulissat%C2%A9PONANT-Dario%20Viegas.jpg" alt="Reel 01" loading="lazy" />
+                  <div class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+                <div class="reel-label">Reel 01</div>
+              </a>
+              <a class="reel-item" href="https://www.instagram.com/reel/CzLRthuPBgD/" target="_blank" rel="noopener">
+                <div class="reel-cover">
+                  <img src="../portfolio/ponant/n%C2%B001_BO070724_Glacier-Kangerlussuaq%C2%A9PONANT-Dario%20Viegas.jpg" alt="Reel 02" loading="lazy" />
+                  <div class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+                <div class="reel-label">Reel 02</div>
+              </a>
+              <a class="reel-item" href="https://www.instagram.com/reels/" target="_blank" rel="noopener">
+                <div class="reel-cover">
+                  <img src="../portfolio/tropicfeel/bi-67.jpg_2.jpg" alt="Reel 03" loading="lazy" />
+                  <div class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+                <div class="reel-label">Reel 03</div>
+              </a>
+              <a class="reel-item" href="https://www.instagram.com/reels/" target="_blank" rel="noopener">
+                <div class="reel-cover">
+                  <img src="../portfolio/colombia/colombia-75.jpg" alt="Reel 04" loading="lazy" />
+                  <div class="reel-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+                <div class="reel-label">Reel 04</div>
+              </a>
             </div>
           </section>
 
