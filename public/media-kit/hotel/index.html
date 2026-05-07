@@ -1762,9 +1762,6 @@
                 <div class="contact-line"><span>Www.Darioexplore.Com</span><span>Portfolio</span></div>
                 <div class="contact-line"><span>Available Worldwide</span><span>Hotels / Resorts</span></div>
               </div>
-              <div class="actions">
-                <button class="btn accent" id="copyEmail">Copy Email</button>
-              </div>
             </section>
 
             <section class="panel profile">
@@ -1877,7 +1874,6 @@
   <script>
     (function () {
       const artboard = document.getElementById('artboard');
-      const copyBtn = document.getElementById('copyEmail');
       const toast = document.getElementById('toast');
       const modal = document.getElementById('modal');
       const modalBody = document.getElementById('modalBody');
@@ -1958,15 +1954,6 @@
         video.play().catch(() => {});
       }
 
-      async function copyEmail() {
-        try {
-          await navigator.clipboard.writeText('hello@darioexplore.com');
-          showToast('Email Copied');
-        } catch (e) {
-          window.location.href = 'mailto:hello@darioexplore.com';
-        }
-      }
-
       document.querySelectorAll('.photo-tile').forEach((button) => {
         button.addEventListener('click', () => openPhoto(button.dataset.photo, button.dataset.title));
       });
@@ -1986,7 +1973,6 @@
       window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') closeModal();
       });
-      copyBtn.addEventListener('click', copyEmail);
       window.addEventListener('resize', fitArtboard);
       fitArtboard();
 
