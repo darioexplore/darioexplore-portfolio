@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Powergrade — Dario Viegas</title>
+  <meta name="description" content="Cinematic color grading presets by Dario Viegas. Coming soon — join the waitlist." />
+
+  <style>
+    @font-face {
+      font-family: 'Druk Wide';
+      src: url('../fonts/DrukWide-Heavy.otf') format('opentype');
+      font-weight: 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Druk Wide';
+      src: url('../fonts/DrukWide-Super.otf') format('opentype');
+      font-weight: 800;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'ABC Mono';
+      src: url('../fonts/ABC-Diatype-Mono.ttf') format('truetype');
+      font-weight: 400;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #0C0B0A;
+      --bg2: #131210;
+      --text: #F0EDE8;
+      --muted: #6A6560;
+      --accent: #C0392B;
+      --line: rgba(240,237,232,0.10);
+      --line-strong: rgba(240,237,232,0.18);
+      --font-display: 'Druk Wide', 'Arial Black', sans-serif;
+      --font-mono: 'ABC Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.04;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(12,11,10,0.80);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .topbar-logo {
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+    }
+
+    .topbar-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+    }
+
+    .topbar-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-bottom: 28px;
+      border: 1px solid rgba(192,57,43,0.35);
+      padding: 8px 16px;
+      border-radius: 0;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(64px, 13vw, 180px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      max-width: 440px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 3px;
+      transition: color 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .hero-cta:hover { color: var(--text); border-color: var(--text); }
+
+    .hero-cta svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .hero-cta:hover svg { transform: translateY(3px); }
+
+    /* ── Section layout ── */
+    section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-bottom: 48px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      line-height: 0.95;
+      margin-bottom: 14px;
+    }
+
+    /* ── Before / After slider ── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .ba-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .ba-slider {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+      border: 1px solid var(--line);
+      background: #1a1917;
+    }
+
+    .ba-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ba-after {
+      clip-path: inset(0 50% 0 0);
+      transition: clip-path 0s;
+    }
+
+    .ba-divider {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: var(--text);
+      transform: translateX(-50%);
+      pointer-events: none;
+      transition: left 0s;
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+
+    .ba-handle svg { width: 16px; height: 16px; color: var(--bg); }
+
+    .ba-labels {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      border-top: 0;
+    }
+
+    .ba-label {
+      font-size: 8px;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+    }
+
+    .ba-label.after { color: var(--accent); }
+
+    /* Placeholder styling when no real images provided */
+    .ba-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    /* ── Signup ── */
+    .signup-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 40px 120px;
+    }
+
+    .signup-inner {
+      border: 1px solid var(--line-strong);
+      padding: 70px 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signup-inner::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .signup-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .signup-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 900;
+      line-height: 0.95;
+      margin-bottom: 20px;
+    }
+
+    .signup-desc {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    .signup-perks {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signup-perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .signup-perk::before {
+      content: '';
+      width: 16px; height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-label {
+      font-size: 8px;
+      letter-spacing: 0.28em;
+      color: var(--muted);
+    }
+
+    .form-input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .form-input::placeholder { color: var(--muted); }
+    .form-input:focus { border-color: var(--accent); }
+
+    .form-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--text);
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
+      border-radius: 0;
+      margin-top: 6px;
+    }
+
+    .form-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .form-btn:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px 0;
+    }
+
+    .form-success-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .form-success-icon svg { width: 20px; height: 20px; color: var(--accent); }
+
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .form-success p {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .footer a { transition: color 0.2s; }
+    .footer a:hover { color: var(--text); }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .topbar { padding: 14px 20px; }
+
+      .hero { padding: 100px 24px 60px; }
+
+      section { padding: 70px 24px; }
+
+      .ba-grid { grid-template-columns: 1fr; gap: 28px; }
+
+      .signup-section { padding: 70px 24px 100px; }
+
+      .signup-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 28px;
+      }
+
+      .footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <a href="https://darioexplore.com" class="topbar-logo">Dario Viegas</a>
+    <span class="topbar-badge">Coming Soon</span>
+    <span>Powergrade</span>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">Cinematic Color — By Dario Viegas</div>
+    <h1 class="hero-title">
+      Power<span>grade</span>
+    </h1>
+    <p class="hero-sub">
+      The exact color science behind every frame — distilled into one tool for photographers and filmmakers who refuse to look ordinary.
+    </p>
+    <a class="hero-cta" href="#signup">
+      Join the waitlist
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- Before / After -->
+  <section>
+    <div class="section-label">02 — Before &amp; After</div>
+    <h2 class="section-title" style="margin-bottom:48px">See The Difference</h2>
+
+    <div class="ba-grid">
+
+      <!-- Pair 1 -->
+      <div class="ba-wrap">
+        <div class="ba-slider" id="ba1">
+          <!-- Replace src with your actual before/after images -->
+          <img class="ba-img ba-before" src="before-1.jpg" alt="Before" onerror="this.style.display='none'" />
+          <img class="ba-img ba-after"  src="after-1.jpg"  alt="After"  onerror="this.style.display='none'" />
+          <div class="ba-placeholder" id="ph1" style="display:none"></div>
+          <div class="ba-divider" id="div1"></div>
+          <div class="ba-handle" id="hdl1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label after">After — Powergrade</span>
+        </div>
+      </div>
+
+      <!-- Pair 2 -->
+      <div class="ba-wrap">
+        <div class="ba-slider" id="ba2">
+          <img class="ba-img ba-before" src="before-2.jpg" alt="Before" onerror="this.style.display='none'" />
+          <img class="ba-img ba-after"  src="after-2.jpg"  alt="After"  onerror="this.style.display='none'" />
+          <div class="ba-placeholder" id="ph2" style="display:none"></div>
+          <div class="ba-divider" id="div2"></div>
+          <div class="ba-handle" id="hdl2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="ba-labels">
+          <span class="ba-label">Before</span>
+          <span class="ba-label after">After — Powergrade</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Signup -->
+  <div class="signup-section" id="signup">
+    <div class="signup-inner">
+      <div>
+        <div class="signup-label">03 — Waitlist</div>
+        <h2 class="signup-title">Be First<br/>To Know</h2>
+        <p class="signup-desc">
+          Drop your email and you'll be the first to get access when Powergrade launches — plus an early-bird discount.
+        </p>
+        <div class="signup-perks">
+          <div class="signup-perk">Early access before public launch</div>
+          <div class="signup-perk">Exclusive launch discount</div>
+          <div class="signup-perk">Behind-the-scenes of the grade</div>
+        </div>
+      </div>
+
+      <div class="form-wrap" id="formWrap">
+        <form id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-field">
+              <label class="form-label" for="name">Your Name</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">Email Address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="hello@example.com" required />
+            </div>
+            <button class="form-btn" type="submit" id="submitBtn">Join the Waitlist</button>
+            <p class="form-note">No spam. Unsubscribe at any time.</p>
+          </div>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+          <h3>You're In</h3>
+          <p>We'll be in touch as soon as<br/>Powergrade is ready to launch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>© 2025 Dario Viegas</span>
+    <a href="https://darioexplore.com">darioexplore.com</a>
+    <span>All Rights Reserved</span>
+  </footer>
+
+  <script>
+    // ── Before/After sliders ──
+    function initSlider(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const after  = el.querySelector('.ba-after');
+      const divider = el.querySelector('.ba-divider');
+      const handle  = el.querySelector('.ba-handle');
+
+      // Check if images loaded; show placeholder if both fail
+      const imgs = el.querySelectorAll('.ba-img');
+      let failed = 0;
+      imgs.forEach(img => {
+        if (img.complete && img.naturalWidth === 0) failed++;
+        img.addEventListener('error', () => {
+          failed++;
+          if (failed === 2) {
+            imgs.forEach(i => i.style.display = 'none');
+            const ph = el.querySelector('.ba-placeholder');
+            if (ph) {
+              ph.style.display = 'flex';
+              ph.textContent = 'Add your before/after images';
+            }
+          }
+        });
+      });
+
+      function setPos(pct) {
+        pct = Math.max(2, Math.min(98, pct));
+        after.style.clipPath   = `inset(0 ${100 - pct}% 0 0)`;
+        divider.style.left     = pct + '%';
+        handle.style.left      = pct + '%';
+      }
+
+      setPos(50);
+
+      function onMove(clientX) {
+        const rect = el.getBoundingClientRect();
+        const pct  = ((clientX - rect.left) / rect.width) * 100;
+        setPos(pct);
+      }
+
+      // Mouse
+      el.addEventListener('mousedown', e => {
+        e.preventDefault();
+        onMove(e.clientX);
+        const mm = e2 => onMove(e2.clientX);
+        const mu = () => { window.removeEventListener('mousemove', mm); window.removeEventListener('mouseup', mu); };
+        window.addEventListener('mousemove', mm);
+        window.addEventListener('mouseup', mu);
+      });
+
+      // Touch
+      el.addEventListener('touchstart', e => {
+        e.preventDefault();
+        onMove(e.touches[0].clientX);
+        const tm = e2 => onMove(e2.touches[0].clientX);
+        const te = () => { window.removeEventListener('touchmove', tm); window.removeEventListener('touchend', te); };
+        window.addEventListener('touchmove', tm, { passive: false });
+        window.addEventListener('touchend', te);
+      }, { passive: false });
+    }
+
+    initSlider('ba1');
+    initSlider('ba2');
+
+    // ── Signup form ──
+    const form    = document.getElementById('signupForm');
+    const success = document.getElementById('formSuccess');
+    const btn     = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = form.querySelector('#email').value.trim();
+      const name  = form.querySelector('#name').value.trim();
+      if (!email) return;
+
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email }),
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    });
+
+    // Smooth scroll for hero CTA
+    document.querySelector('.hero-cta').addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
