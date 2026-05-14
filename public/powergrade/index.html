@@ -607,17 +607,16 @@
       </div>
 
       <div class="form-wrap" id="formWrap">
-        <form id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <form id="signupForm" action="/api/subscribe" method="POST" novalidate>
+          <input type="hidden" name="user_id" value="c9271a44-1a78-4cfc-9680-cba3b28e8db8" />
+          <input type="hidden" name="source" value="my-landing-page" />
+          <input type="hidden" name="tags" value="coming-soon" />
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div class="form-field">
-              <label class="form-label" for="name">Your Name</label>
-              <input class="form-input" type="text" id="name" name="name" placeholder="John Doe" required />
-            </div>
-            <div class="form-field">
               <label class="form-label" for="email">Email Address</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="hello@example.com" required />
+              <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email" required />
             </div>
-            <button class="form-btn" type="submit" id="submitBtn">Join the Waitlist</button>
+            <button class="form-btn" type="submit" id="submitBtn">Join Waitlist</button>
             <p class="form-note">No spam. Unsubscribe at any time.</p>
           </div>
         </form>
@@ -716,7 +715,6 @@
     form.addEventListener('submit', async e => {
       e.preventDefault();
       const email = form.querySelector('#email').value.trim();
-      const name  = form.querySelector('#name').value.trim();
       if (!email) return;
 
       btn.textContent = 'Submitting...';
@@ -725,8 +723,13 @@
       try {
         const res = await fetch(form.action, {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            user_id: 'c9271a44-1a78-4cfc-9680-cba3b28e8db8',
+            source:  'my-landing-page',
+            tags:    'coming-soon',
+          }),
         });
 
         if (res.ok) {
