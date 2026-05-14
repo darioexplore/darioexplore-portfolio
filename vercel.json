@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/((?!api/|media-kit|powergrade).*)", "destination": "/index.html" }
   ]
