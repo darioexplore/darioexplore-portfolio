@@ -606,8 +606,14 @@
         </div>
       </div>
 
+      <!-- Hidden iframe receives the form POST response — keeps user on page -->
+      <iframe name="submit-target" id="submitTarget" style="display:none" aria-hidden="true"></iframe>
+
       <div class="form-wrap" id="formWrap">
-        <form id="signupForm" action="https://mailboxpro-ecru.vercel.app/signup/api/subscribe" method="POST" novalidate>
+        <form id="signupForm"
+              action="https://mailboxpro-ecru.vercel.app/signup/api/subscribe"
+              method="POST"
+              target="submit-target">
           <input type="hidden" name="user_id" value="4d28c057-0b50-4bf2-b78e-7450a12bbd6b" />
           <input type="hidden" name="source" value="my-landing-page" />
           <input type="hidden" name="tags" value="coming-soon" />
@@ -707,42 +713,25 @@
     initSlider('ba1');
     initSlider('ba2');
 
-    // ── Signup form ──
+    // ── Signup form — native POST into hidden iframe (bypasses CORS) ──
     const form    = document.getElementById('signupForm');
     const success = document.getElementById('formSuccess');
     const btn     = document.getElementById('submitBtn');
+    const iframe  = document.getElementById('submitTarget');
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+    form.addEventListener('submit', e => {
       const email = form.querySelector('#email').value.trim();
-      if (!email) return;
-
+      if (!email) { e.preventDefault(); return; }
       btn.textContent = 'Submitting...';
       btn.disabled = true;
+      // Form submits natively into the iframe — no CORS issues
+    });
 
-      try {
-        const res = await fetch('https://mailboxpro-ecru.vercel.app/signup/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email,
-            user_id: '4d28c057-0b50-4bf2-b78e-7450a12bbd6b',
-            source:  'my-landing-page',
-            tags:    'coming-soon',
-          }),
-        });
-
-        if (res.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-        } else {
-          btn.textContent = 'Try Again';
-          btn.disabled = false;
-        }
-      } catch {
-        btn.textContent = 'Try Again';
-        btn.disabled = false;
-      }
+    iframe.addEventListener('load', () => {
+      // Iframe loads once on page init (empty) — ignore that first fire
+      if (!btn.disabled) return;
+      form.style.display = 'none';
+      success.style.display = 'block';
     });
 
     // Smooth scroll for hero CTA
