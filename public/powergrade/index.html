@@ -606,36 +606,20 @@
         </div>
       </div>
 
-      <!-- Hidden iframe receives the form POST response — keeps user on page -->
-      <iframe name="submit-target" id="submitTarget" style="display:none" aria-hidden="true"></iframe>
-
-      <div class="form-wrap" id="formWrap">
-        <form id="signupForm"
-              action="https://mailboxpro-ecru.vercel.app/api/subscribe"
-              method="POST"
-              target="submit-target">
+      <div class="form-wrap">
+        <form action="https://mailboxpro-ecru.vercel.app/api/subscribe" method="POST">
           <input type="hidden" name="user_id" value="c9271a44-1a78-4cfc-9680-cba3b28e8db8" />
           <input type="hidden" name="source" value="my-landing-page" />
           <input type="hidden" name="tags" value="coming-soon" />
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div class="form-field">
               <label class="form-label" for="email">Email Address</label>
-              <input class="form-input" type="email" id="email" name="email" placeholder="Enter your email" required />
+              <input class="form-input" type="email" name="email" id="email" placeholder="Enter your email" required />
             </div>
-            <button class="form-btn" type="submit" id="submitBtn">Join Waitlist</button>
+            <button class="form-btn" type="submit">Join Waitlist</button>
             <p class="form-note">No spam. Unsubscribe at any time.</p>
           </div>
         </form>
-
-        <div class="form-success" id="formSuccess">
-          <div class="form-success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-          </div>
-          <h3>You're In</h3>
-          <p>We'll be in touch as soon as<br/>Powergrade is ready to launch.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -713,26 +697,6 @@
     initSlider('ba1');
     initSlider('ba2');
 
-    // ── Signup form — native POST into hidden iframe (bypasses CORS) ──
-    const form    = document.getElementById('signupForm');
-    const success = document.getElementById('formSuccess');
-    const btn     = document.getElementById('submitBtn');
-    const iframe  = document.getElementById('submitTarget');
-
-    form.addEventListener('submit', e => {
-      const email = form.querySelector('#email').value.trim();
-      if (!email) { e.preventDefault(); return; }
-      btn.textContent = 'Submitting...';
-      btn.disabled = true;
-      // Form submits natively into the iframe — no CORS issues
-    });
-
-    iframe.addEventListener('load', () => {
-      // Iframe loads once on page init (empty) — ignore that first fire
-      if (!btn.disabled) return;
-      form.style.display = 'none';
-      success.style.display = 'block';
-    });
 
     // Smooth scroll for hero CTA
     document.querySelector('.hero-cta').addEventListener('click', e => {
