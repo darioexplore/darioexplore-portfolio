@@ -514,6 +514,20 @@
 
       .footer { padding: 16px 24px; flex-direction: column; gap: 8px; text-align: center; }
     }
+
+    /* ── Focus states (keyboard nav) ── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -614,8 +628,10 @@
           <input type="hidden" name="user_id" value="4d28c057-0b50-4bf2-b78e-7450a12bbd6b" />
           <input type="hidden" name="source" value="my-landing-page" />
           <input type="hidden" name="tags" value="coming-soon" />
-          <input class="form-input" type="text" name="name" placeholder="Your name" />
-          <input class="form-input" type="email" name="email" placeholder="Enter your email" required />
+          <label for="pg-name" class="form-label">Your Name</label>
+          <input class="form-input" type="text" id="pg-name" name="name" placeholder="Your name" />
+          <label for="pg-email" class="form-label">Email Address</label>
+          <input class="form-input" type="email" id="pg-email" name="email" placeholder="Enter your email" required />
           <button class="form-btn" type="submit">Join Waitlist</button>
           <p id="emailmarket-message" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;color:var(--accent);min-height:1em;"></p>
         </form>
@@ -638,6 +654,24 @@
               message.textContent = error.message || "Signup failed.";
             }
           });
+        </script>
+        <script>
+          // Disable submit button during async to prevent double-submit
+          var _pgForm = document.getElementById('emailmarket-form');
+          var _pgBtn  = _pgForm ? _pgForm.querySelector('button[type="submit"]') : null;
+          if (_pgForm && _pgBtn) {
+            _pgForm.addEventListener('submit', function() {
+              _pgBtn.disabled = true;
+              _pgBtn.textContent = 'Joining...';
+            }, true);
+            document.getElementById('emailmarket-message') && (function() {
+              var obs = new MutationObserver(function() {
+                var msg = document.getElementById('emailmarket-message').textContent;
+                if (msg && msg !== 'Joining...') { _pgBtn.disabled = false; _pgBtn.textContent = 'Join Waitlist'; }
+              });
+              obs.observe(document.getElementById('emailmarket-message'), { childList: true, characterData: true, subtree: true });
+            })();
+          }
         </script>
         <p class="form-note">No spam. Unsubscribe at any time.</p>
       </div>
