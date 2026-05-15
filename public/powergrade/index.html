@@ -607,48 +607,34 @@
       </div>
 
       <div class="form-wrap">
-        <form action="https://mailboxpro-ecru.vercel.app/signup/api/subscribe" method="POST" data-emailmarket-form style="display:flex;flex-direction:column;gap:14px;">
+        <form id="emailmarket-form" style="display:flex;flex-direction:column;gap:14px;">
           <input type="hidden" name="user_id" value="4d28c057-0b50-4bf2-b78e-7450a12bbd6b" />
           <input type="hidden" name="source" value="my-landing-page" />
           <input type="hidden" name="tags" value="coming-soon" />
           <input class="form-input" type="text" name="name" placeholder="Your name" />
           <input class="form-input" type="email" name="email" placeholder="Enter your email" required />
           <button class="form-btn" type="submit">Join Waitlist</button>
+          <p id="emailmarket-message" style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;color:var(--accent);min-height:1em;"></p>
         </form>
-        <p data-emailmarket-message style="display:none;font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;color:var(--accent);margin-top:10px;"></p>
         <script>
-          (function () {
-            var form = document.currentScript.previousElementSibling.previousElementSibling;
-            var message = form.nextElementSibling;
-            form.addEventListener("submit", function (event) {
-              event.preventDefault();
-              message.style.display = "block";
-              message.textContent = "Joining...";
-              var formData = new FormData(form);
-              fetch(form.action, {
+          document.getElementById("emailmarket-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            var form = event.currentTarget;
+            var message = document.getElementById("emailmarket-message");
+            message.textContent = "Joining...";
+            try {
+              var response = await fetch("https://mailboxpro-ecru.vercel.app/api/subscribe?response=json", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  user_id: formData.get("user_id"),
-                  source: formData.get("source"),
-                  tags: formData.get("tags"),
-                  name: formData.get("name"),
-                  email: formData.get("email")
-                })
-              })
-                .then(function (response) {
-                  return response.json();
-                })
-                .then(function (data) {
-                  if (!data.ok) throw new Error(data.error || "Signup did not save.");
-                  form.reset();
-                  message.textContent = "You're in. Thanks for joining.";
-                })
-                .catch(function (error) {
-                  message.textContent = error.message;
-                });
-            });
-          })();
+                body: new FormData(form)
+              });
+              var data = await response.json();
+              if (!data.ok) throw new Error(data.error || "Signup did not save.");
+              form.reset();
+              message.textContent = "You're in. Thanks for joining.";
+            } catch (error) {
+              message.textContent = error.message || "Signup failed.";
+            }
+          });
         </script>
         <p class="form-note">No spam. Unsubscribe at any time.</p>
       </div>
