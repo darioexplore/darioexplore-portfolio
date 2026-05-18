@@ -1,9 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/:path*" },
-    { "source": "/media-kit/:path*", "destination": "/media-kit/:path*" },
-    { "source": "/powergrade/:path*", "destination": "/powergrade/:path*" },
-    { "source": "/:path*", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
