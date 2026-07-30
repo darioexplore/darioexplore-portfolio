@@ -440,6 +440,87 @@
       height:100%;
     }
 
+    .aud-block{
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .aud-block:last-child{border-bottom:0}
+    .aud-head{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:10px;
+    }
+    .aud-head .platform-icon{width:16px;height:16px;grid-row:unset;grid-column:unset}
+    .aud-platform-name{
+      font-size:9px;
+      letter-spacing:.18em;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+    .aud-kpis{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
+      margin-bottom:12px;
+    }
+    .aud-kpi{
+      padding:8px 10px;
+      border:1px solid var(--line);
+    }
+    .aud-kpi .value{
+      font-size:18px;
+      line-height:1;
+      margin-bottom:4px;
+    }
+    .aud-kpi .label{
+      font-size:8px;
+      letter-spacing:.16em;
+      color:var(--muted);
+    }
+    .aud-sub{
+      font-size:8px;
+      letter-spacing:.16em;
+      color:var(--muted);
+      text-transform:uppercase;
+      margin-bottom:6px;
+    }
+    .aud-bars{
+      display:grid;
+      gap:5px;
+      margin-bottom:10px;
+    }
+    .aud-bar-row{
+      display:grid;
+      grid-template-columns:90px 1fr 28px;
+      align-items:center;
+      gap:6px;
+    }
+    .aud-bar-label{
+      font-size:8px;
+      letter-spacing:.08em;
+      color:var(--fg);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .aud-bar-track{
+      height:3px;
+      background:var(--line);
+      overflow:hidden;
+    }
+    .aud-bar-fill{
+      height:100%;
+      background:var(--accent);
+      opacity:.7;
+    }
+    .aud-bar-pct{
+      font-size:8px;
+      letter-spacing:.06em;
+      color:var(--muted);
+      text-align:right;
+    }
+
     .services{
       display:grid;
       gap:12px;
@@ -1794,28 +1875,137 @@
 
             <section class="panel">
               <span class="marker">04 — Audience</span>
-              <div class="stats" style="margin-top:14px">
-                <div class="stat platform">
-                  <span class="platform-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.8"/>
-                      <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
-                      <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
-                    </svg>
-                  </span>
-                  <div class="value">190K+</div>
-                  <div class="label">Instagram Audience</div>
+              <div style="margin-top:14px">
+
+                <!-- Instagram -->
+                <div class="aud-block">
+                  <div class="aud-head">
+                    <span class="platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.8"/>
+                        <circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/>
+                        <circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span class="aud-platform-name">Instagram</span>
+                  </div>
+                  <div class="aud-kpis">
+                    <div class="aud-kpi">
+                      <div class="value">190K+</div>
+                      <div class="label">Followers</div>
+                    </div>
+                    <div class="aud-kpi">
+                      <div class="value">500K</div>
+                      <div class="label">Views / Month</div>
+                    </div>
+                  </div>
+                  <div class="aud-sub">Age</div>
+                  <div class="aud-bars">
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">25–34</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:53%"></div></div>
+                      <div class="aud-bar-pct">53%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">35–44</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:26%"></div></div>
+                      <div class="aud-bar-pct">26%</div>
+                    </div>
+                  </div>
+                  <div class="aud-sub">Top Markets</div>
+                  <div class="aud-bars">
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">United States</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:100%"></div></div>
+                      <div class="aud-bar-pct">16%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">Portugal</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:37.5%"></div></div>
+                      <div class="aud-bar-pct">6%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">France</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:31%"></div></div>
+                      <div class="aud-bar-pct">5%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">Italy</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:25%"></div></div>
+                      <div class="aud-bar-pct">4%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">Indonesia</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:25%"></div></div>
+                      <div class="aud-bar-pct">4%</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="stat platform">
-                  <span class="platform-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M21 12c0-2.22-.22-3.68-.62-4.4-.22-.42-.56-.75-.99-.97C18.64 6.24 16.18 6 12 6s-6.64.24-7.39.63c-.43.22-.77.55-.99.97C3.22 8.32 3 9.78 3 12s.22 3.68.62 4.4c.22.42.56.75.99.97.75.39 3.21.63 7.39.63s6.64-.24 7.39-.63c.43-.22.77-.55.99-.97.4-.72.62-2.18.62-4.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                      <path d="m10.5 9.4 4.2 2.6-4.2 2.6V9.4Z" fill="currentColor"/>
-                    </svg>
-                  </span>
-                  <div class="value">8.5K+</div>
-                  <div class="label">Youtube Subscribers</div>
+
+                <!-- YouTube -->
+                <div class="aud-block">
+                  <div class="aud-head">
+                    <span class="platform-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M21 12c0-2.22-.22-3.68-.62-4.4-.22-.42-.56-.75-.99-.97C18.64 6.24 16.18 6 12 6s-6.64.24-7.39.63c-.43.22-.77.55-.99.97C3.22 8.32 3 9.78 3 12s.22 3.68.62 4.4c.22.42.56.75.99.97.75.39 3.21.63 7.39.63s6.64-.24 7.39-.63c.43-.22.77-.55.99-.97.4-.72.62-2.18.62-4.4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="m10.5 9.4 4.2 2.6-4.2 2.6V9.4Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span class="aud-platform-name">YouTube</span>
+                  </div>
+                  <div class="aud-kpis">
+                    <div class="aud-kpi">
+                      <div class="value">8.5K+</div>
+                      <div class="label">Subscribers</div>
+                    </div>
+                    <div class="aud-kpi">
+                      <div class="value">30K</div>
+                      <div class="label">Views / Month</div>
+                    </div>
+                  </div>
+                  <div class="aud-sub">Age</div>
+                  <div class="aud-bars">
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">25–34</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:100%"></div></div>
+                      <div class="aud-bar-pct">35%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">35–44</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:60%"></div></div>
+                      <div class="aud-bar-pct">21%</div>
+                    </div>
+                  </div>
+                  <div class="aud-sub">Top Markets</div>
+                  <div class="aud-bars">
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">United States</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:100%"></div></div>
+                      <div class="aud-bar-pct">20%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">Japan</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:50%"></div></div>
+                      <div class="aud-bar-pct">10%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">India</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:50%"></div></div>
+                      <div class="aud-bar-pct">10%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">United Kingdom</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:20%"></div></div>
+                      <div class="aud-bar-pct">4%</div>
+                    </div>
+                    <div class="aud-bar-row">
+                      <div class="aud-bar-label">Germany</div>
+                      <div class="aud-bar-track"><div class="aud-bar-fill" style="width:15%"></div></div>
+                      <div class="aud-bar-pct">3%</div>
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </section>
 
